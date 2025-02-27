@@ -35,6 +35,10 @@ namespace Spaces.Core.Editor
         private const string ShowAtStartupKey = "SpacesSDK_ShowSetupWizardAtStartup";
         private int selectedTab = 0; // 0 = Setup, 1 = Add-Ons
 
+        // Package paths
+        private const string ASSETS_PATH = "Assets/SpacesSDK/Installs/";
+        private const string PACKAGE_PATH = "Packages/com.spacesmetaverse.sdk/Installs/";
+
         bool showTMPHelpBox = false;
         bool showInputSystemHelpBox = false;
         bool showVoiceHelpBox = false;
@@ -200,12 +204,13 @@ namespace Spaces.Core.Editor
             EditorGUILayout.Space();
             GUILayout.Label("Single Player [Required]", EditorStyles.boldLabel);
 
-            string gameCreatorPath = "Assets/SpacesSDK/Installs/GameCreator2.17.51.unitypackage";
+            string gameCreatorFileName = "GameCreator2.17.51.unitypackage";
+            string gameCreatorPath = FindPackagePath(gameCreatorFileName);
             if (Directory.Exists("Assets/Plugins/GameCreator"))
             {
                 GUILayout.Label("Game Creator 2.17.51 Installed ✔️", checkStyle);
             }
-            else if (File.Exists(gameCreatorPath))
+            else if (gameCreatorPath != null)
             {
                 if (GUILayout.Button("Install Game Creator 2"))
                 {
@@ -214,18 +219,19 @@ namespace Spaces.Core.Editor
             }
             else
             {
-                EditorGUILayout.HelpBox("Game Creator 2 package not found at: " + gameCreatorPath, MessageType.Error);
+                EditorGUILayout.HelpBox($"Game Creator 2 package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
             }
 
             EditorGUILayout.Space();
 
             // --- ReadyPlayerMe ---
-            string rpmPath = "Assets/SpacesSDK/Installs/ReadyPlayerMe7.3.1.unitypackage";
+            string rpmFileName = "ReadyPlayerMe7.3.1.unitypackage";
+            string rpmPath = FindPackagePath(rpmFileName);
             if (Directory.Exists("Assets/Ready Player Me"))
             {
                 GUILayout.Label("ReadyPlayerMe 7.3.1 Installed ✔️", checkStyle);
             }
-            else if (File.Exists(rpmPath))
+            else if (rpmPath != null)
             {
                 if (GUILayout.Button("Install ReadyPlayerMe"))
                 {
@@ -241,7 +247,7 @@ namespace Spaces.Core.Editor
             }
             else
             {
-                EditorGUILayout.HelpBox("ReadyPlayerMe package not found at: " + rpmPath, MessageType.Error);
+                EditorGUILayout.HelpBox($"ReadyPlayerMe package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
             }
 
             EditorGUILayout.Space();
@@ -254,12 +260,13 @@ namespace Spaces.Core.Editor
                 if (request.Status == StatusCode.Success)
                 {
                     // --- Fusion 2 Package ---
-                    string fusionPath = "Assets/SpacesSDK/Installs/Fusion2.0.4.unitypackage";
+                    string fusionFileName = "Fusion2.0.4.unitypackage";
+                    string fusionPath = FindPackagePath(fusionFileName);
                     if (Directory.Exists("Assets/Photon/Fusion"))
                     {
                         GUILayout.Label("Fusion 2.0.4 Installed ✔️", checkStyle);
                     }
-                    else if (File.Exists(fusionPath))
+                    else if (fusionPath != null)
                     {
                         if (GUILayout.Button("Install Fusion 2"))
                         {
@@ -269,7 +276,7 @@ namespace Spaces.Core.Editor
                     }
                     else
                     {
-                        EditorGUILayout.HelpBox("Fusion 2 package not found at: " + fusionPath, MessageType.Error);
+                        EditorGUILayout.HelpBox($"Fusion 2 package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
                     }
                     
                     if (showFusionHelpBox)
@@ -280,12 +287,13 @@ namespace Spaces.Core.Editor
                     }
 
                     // --- Photon Voice Package ---
-                    string voicePath = "Assets/SpacesSDK/Installs/PhotonVoice2.57.0.unitypackage";
+                    string voiceFileName = "PhotonVoice2.57.0.unitypackage";
+                    string voicePath = FindPackagePath(voiceFileName);
                     if (Directory.Exists("Assets/Photon/PhotonVoice"))
                     {
                         GUILayout.Label("Photon Voice 2.57.0 Installed ✔️", checkStyle);
                     }
-                    else if (File.Exists(voicePath))
+                    else if (voicePath != null)
                     {
                         if (GUILayout.Button("Install Photon Voice 2"))
                         {
@@ -295,7 +303,7 @@ namespace Spaces.Core.Editor
                     }
                     else
                     {
-                        EditorGUILayout.HelpBox("Photon Voice 2 package not found at: " + voicePath, MessageType.Error);
+                        EditorGUILayout.HelpBox($"Photon Voice 2 package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
                     }
 
                     if (showVoiceHelpBox)
@@ -306,12 +314,13 @@ namespace Spaces.Core.Editor
                     }
 
                     // --- Game Creator 2 Fusion Module ---
-                    string gcFusionPath = "Assets/SpacesSDK/Installs/GC2_Fusion1.2.7.unitypackage";
+                    string gcFusionFileName = "GC2_Fusion1.2.7.unitypackage";
+                    string gcFusionPath = FindPackagePath(gcFusionFileName);
                     if (Directory.Exists("Assets/Plugins/NinjutsuGames"))
                     {
                         GUILayout.Label("Game Creator 2 Fusion Module 1.2.7 Installed ✔️", checkStyle);
                     }
-                    else if (File.Exists(gcFusionPath))
+                    else if (gcFusionPath != null)
                     {
                         if (GUILayout.Button("Install Game Creator 2 Fusion Module"))
                         {
@@ -320,7 +329,7 @@ namespace Spaces.Core.Editor
                     }
                     else
                     {
-                        EditorGUILayout.HelpBox("Game Creator 2 Fusion Module package not found at: " + gcFusionPath, MessageType.Error);
+                        EditorGUILayout.HelpBox($"Game Creator 2 Fusion Module package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
                     }
 
                     // --- Option to Remove PUN (if applicable) ---
@@ -622,6 +631,31 @@ namespace Spaces.Core.Editor
             if (HasPun)
                 return false;
             return true;
+        }
+
+        /// <summary>
+        /// Finds the correct path for a package file by checking first in Assets and then in Packages.
+        /// </summary>
+        /// <param name="fileName">The file name of the package</param>
+        /// <returns>The full path if found, or null if not found</returns>
+        private string FindPackagePath(string fileName)
+        {
+            // First check in Assets
+            string assetsPath = Path.Combine(ASSETS_PATH, fileName);
+            if (File.Exists(assetsPath))
+            {
+                return assetsPath;
+            }
+
+            // Then check in Packages
+            string packagePath = Path.Combine(PACKAGE_PATH, fileName);
+            if (File.Exists(packagePath))
+            {
+                return packagePath;
+            }
+
+            // Not found in either location
+            return null;
         }
     }
 }
