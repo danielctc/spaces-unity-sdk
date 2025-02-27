@@ -1,0 +1,23 @@
+{
+    "name": "com.spacesmetaverse.sdk",
+    "version": "0.0.1",
+    "displayName": "Spaces Metavese SDK",
+    "description": "This Module contains all the core components for Spaces",
+    "unity": "6000.0",
+    "unityRelease": "30f1",
+    "documentationUrl": "https://www.spacesmetaverse.com",
+    "changelogUrl": "https://www.spacesmetaverse.com",
+    "licensesUrl": "https://www.spacesmetaverse.com",
+    "dependencies": {
+    },
+    "keywords": [
+      "spaces",
+      "metaverse"
+    ],
+    "author": {
+      "name": "Spaces Metaverse",
+      "email": "info@spacesmetaverse.com",
+      "url": "https://www.spacesmetaverse.com"
+    },
+    "samples": []
+  }

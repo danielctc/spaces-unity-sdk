@@ -1,0 +1,8 @@
+newmtl Road
+Kd 0.2452829 0.2452829 0.2452829
+d 1
+
+newmtl Stripe
+Kd 1 1 1
+d 1
+

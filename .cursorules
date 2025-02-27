@@ -1,0 +1,31 @@
+# Project Instructions
+
+Use specification and guidelines as you build the app.
+
+Write the complete code for every step. Do not get lazy.
+
+Your goal is to completely finish whatever I ask for.
+
+
+## Overview
+
+This is a SDK for Unity. It's uses Unity 6 and Photon Fusion 2 in Shared Mode. The project is a multiplayer environment and acts as the backend to a React JS frontend. The React JS frontend is located in a different folder - however the backend react files are located ../Assets/SpacesSDK/Runtime/React
+
+## Tech Stack
+- Unity 6.0.30
+- Photon Fusion Shared Mode
+- React JS (Not included with this project - this is for the front end)
+
+## Rules
+
+Follow these rules when building the app.
+
+#### General Rules
+
+Include comments where appropriate.
+This file may need to be updated when new react code is added as it bridges unity to react: Extensions/WebGL/React.jslib
+
+
+### Auth Rules
+
+Players log in using the react front end - details are passed to this script Runtime/React/ReactUnityLogin.cs
