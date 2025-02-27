@@ -13,6 +13,10 @@ namespace Spaces.Core.Editor
     {
         public string TabName => "Multiplayer";
 
+        // Define paths for assets
+        private const string ASSETS_PATH = "Assets/SpacesSDK/Editor/Assets/MultiDefaultScene";
+        private const string PACKAGE_PATH = "Packages/com.spacesmetaverse.sdk/Editor/Assets/MultiDefaultScene";
+
         private string newProjectName = "";
         private string sceneName = "";
 
@@ -40,6 +44,31 @@ namespace Spaces.Core.Editor
         public void OnPluginLoaded(AssetMenuExtensions.ConfigurationWindow window)
         {
             // Add any code that should be executed when the plugin is loaded
+        }
+
+        /// <summary>
+        /// Finds the correct path for a file by checking first in Assets and then in Packages.
+        /// </summary>
+        /// <param name="fileName">The file name to find</param>
+        /// <returns>The full path if found, or null if not found</returns>
+        private string FindAssetPath(string fileName)
+        {
+            // First check in Assets
+            string assetsPath = Path.Combine(ASSETS_PATH, fileName);
+            if (File.Exists(assetsPath))
+            {
+                return assetsPath;
+            }
+
+            // Then check in Packages
+            string packagePath = Path.Combine(PACKAGE_PATH, fileName);
+            if (File.Exists(packagePath))
+            {
+                return packagePath;
+            }
+
+            // Not found in either location
+            return null;
         }
 
         private void CreateSpace()
@@ -73,23 +102,12 @@ namespace Spaces.Core.Editor
                 return;
             }
 
-            // Set up the dev path and package fallback for the default scene.
-            string devDefaultScenePath = "Assets/SpacesSDK/Editor/Assets/MultiDefaultScene/DefaultScene.unity";
-            string packageDefaultScenePath = "Packages/com.spacesmetaverse.core/Editor/AssetsMultiDefaultScene/DefaultScene.unity";
-            string defaultScenePath = "";
-
-            // Use the dev path if available; otherwise, use the package path.
-            if (File.Exists(devDefaultScenePath))
+            // Find the default scene using the helper method
+            string defaultScenePath = FindAssetPath("DefaultScene.unity");
+            
+            if (string.IsNullOrEmpty(defaultScenePath))
             {
-                defaultScenePath = devDefaultScenePath;
-            }
-            else if (File.Exists(packageDefaultScenePath))
-            {
-                defaultScenePath = packageDefaultScenePath;
-            }
-            else
-            {
-                EditorUtility.DisplayDialog("Error", "Default scene not found in either dev or package paths.", "OK");
+                EditorUtility.DisplayDialog("Error", $"Default scene not found in either {ASSETS_PATH} or {PACKAGE_PATH}", "OK");
                 return;
             }
 
