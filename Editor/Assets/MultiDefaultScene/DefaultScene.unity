@@ -408,7 +408,7 @@ MonoBehaviour:
         m_Method:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 682821299}
+            - m_Target: {fileID: 682821297}
               m_TargetAssemblyTypeName: Spaces.React.Runtime.PopulateUIOnAuth, Assembly-CSharp
               m_MethodName: UpdateFieldsDirectlyWrapper
               m_Mode: 1
@@ -1022,12 +1022,12 @@ MonoBehaviour:
   m_SetFromSource: 0
   m_OnChangeSet:
     m_Property:
-      rid: 1426401279288803936
+      rid: 1426401479661453764
   references:
     version: 2
     RefIds:
-    - rid: 1426401279288803936
-      type: {class: SetStringReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime, asm: Assembly-CSharp}
+    - rid: 1426401479661453764
+      type: {class: SetStringReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime, asm: Spaces.Core.Runtime}
       data: 
 --- !u!114 &446926981
 MonoBehaviour:
@@ -1593,7 +1593,7 @@ MonoBehaviour:
               rid: 1426401279288804269
           m_InputRotate:
             m_Input:
-              rid: 1426401279288804274
+              rid: 1426401479661453765
           m_SensitivityX:
             m_Property:
               rid: 1426401279288804271
@@ -1646,8 +1646,8 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 0.15000000596046448
-    - rid: 1426401279288804274
-      type: {class: InputValueVector2MouseHold, ns: GameCreator.Runtime.Common, asm: Assembly-CSharp}
+    - rid: 1426401479661453765
+      type: {class: InputValueVector2MouseHold, ns: GameCreator.Runtime.Common, asm: Spaces.Core.Runtime}
       data:
         m_Button: 0
 --- !u!1 &1406154062
@@ -2885,7 +2885,7 @@ MonoBehaviour:
     m_Instructions:
     - rid: 1426401279288803916
     - rid: 1426401279288804297
-    - rid: 1426401279288804299
+    - rid: 1426401479661453763
     - rid: 1426401279288804300
   m_TriggerEvent:
     rid: 1426401279288803915
@@ -2935,12 +2935,6 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 1
-    - rid: 1426401279288804299
-      type: {class: InstructionSetReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        inputField: {fileID: 446926980}
     - rid: 1426401279288804300
       type: {class: InstructionGameObjectSetActive, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -2960,6 +2954,12 @@ MonoBehaviour:
       type: {class: GetBoolValue, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 0
+    - rid: 1426401479661453763
+      type: {class: InstructionSetReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime.VisualScripting, asm: Spaces.Core.Runtime}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        inputField: {fileID: 446926980}
 --- !u!1 &2044730627
 GameObject:
   m_ObjectHideFlags: 0
