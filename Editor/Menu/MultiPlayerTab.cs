@@ -23,7 +23,7 @@ namespace Spaces.Core.Editor
         public void DrawTabGUI()
         {
             EditorGUILayout.BeginVertical();
-            GUILayout.Label("Multi Player settings", EditorStyles.boldLabel);
+            GUILayout.Label("New Multiplayer Project", EditorStyles.boldLabel);
 
             GUILayout.Label("New Project", EditorStyles.label);
             newProjectName = EditorGUILayout.TextField(newProjectName);

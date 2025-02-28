@@ -1,6 +1,6 @@
 {
     "name": "com.spacesmetaverse.sdk",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "displayName": "Spaces Metaverse SDK",
     "description": "This Module contains all the core components for Spaces Metaverse. This is an Alpha build.",
     "unity": "6000.0",

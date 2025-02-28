@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 #if UNITY_EDITOR
-namespace Spaces.Core.Editor.Components
+namespace Spaces.Core.Editor
 {
     /// <summary>
     /// Simple menu path definition for Spaces Multiplayer components

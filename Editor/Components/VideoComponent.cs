@@ -3,11 +3,12 @@ using UnityEditor;
 using System.Linq;
 
 #if UNITY_EDITOR
-namespace Spaces.Core.Editor.Components
+namespace Spaces.Core.Editor
+
 {
     public class VideoComponent
     {
-        private const string PREFAB_PATH = "Assets/SpacesSDK/Assets/Prefabs/Components/DefaultTV.prefab";
+        private const string PREFAB_PATH = "Assets/SpacesSDK/Runtime/Assets/Prefabs/Components/DefaultTV.prefab";
         
         // Use priority 0 to place at the top of the menu
         [MenuItem(SpacesMenuItems.MENU_ROOT + "/Video", false, 0)]

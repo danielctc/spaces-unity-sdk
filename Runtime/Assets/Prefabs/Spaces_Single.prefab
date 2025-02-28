@@ -3533,16 +3533,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 8945157336810127946
     - rid: 8945157517419479349
   m_TriggerEvent:
     rid: 8945157336810127883
   references:
     version: 2
     RefIds:
-    - rid: 1000
-      type: {class: GetColorColorsWhite, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 8945157336810127883
       type: {class: EventNetworkObjectSpawned, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
       data:
@@ -3553,59 +3549,6 @@ MonoBehaviour:
       type: {class: GetGameObjectInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_GameObject: {fileID: 6838992735190151648}
-    - rid: 8945157336810127946
-      type: {class: InstructionAddFloatingText, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        target:
-          m_Property:
-            rid: 8945157336810127947
-        text:
-          m_Property:
-            rid: 8945157336810127948
-        settings:
-          prefab:
-            m_Property:
-              rid: 8945157406762991855
-          offset:
-            m_Property:
-              rid: 8945157384558608431
-          color:
-            m_Property:
-              rid: 1000
-          duration: 0
-          fadeOutTime: 0.5
-    - rid: 8945157336810127947
-      type: {class: GetGameObjectCharactersBone, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data:
-        m_Character:
-          m_Property:
-            rid: 8945157336810127949
-        m_Bone:
-          m_Type: 1
-          m_Human: 10
-          m_Path: 
-    - rid: 8945157336810127948
-      type: {class: GetStringFusionUsername, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
-      data:
-        player:
-          m_Property:
-            rid: 8945157336810127950
-    - rid: 8945157336810127949
-      type: {class: GetGameObjectTarget, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data: 
-    - rid: 8945157336810127950
-      type: {class: GetGameObjectTarget, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data: 
-    - rid: 8945157384558608431
-      type: {class: GetPositionVector3, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data:
-        m_Position: {x: 0, y: 0.4, z: 0}
-    - rid: 8945157406762991855
-      type: {class: GetGameObjectInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data:
-        m_GameObject: {fileID: 5628039026471584421, guid: 376de638e62b54e3bbc17fb5878d74fd, type: 3}
     - rid: 8945157517419479349
       type: {class: InstructionLogicRunActions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -3732,7 +3675,7 @@ GameObject:
   - component: {fileID: 1276194727594953696}
   - component: {fileID: 4810863290156369730}
   m_Layer: 0
-  m_Name: Spaces_Multiplayer
+  m_Name: Spaces_Single
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3986,7 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1181051060
+  SortKey: 2104662300
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
