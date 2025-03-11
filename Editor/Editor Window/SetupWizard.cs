@@ -41,7 +41,6 @@ namespace Spaces.Core.Editor
 
         bool showTMPHelpBox = false;
         bool showInputSystemHelpBox = false;
-        bool showVoiceHelpBox = false;
         bool showFusionHelpBox = false;
         bool iscompleteshowing = false;
 
@@ -286,33 +285,6 @@ namespace Spaces.Core.Editor
                             MessageType.Info);
                     }
 
-                    // --- Photon Voice Package ---
-                    string voiceFileName = "PhotonVoice2.57.0.unitypackage";
-                    string voicePath = FindPackagePath(voiceFileName);
-                    if (Directory.Exists("Assets/Photon/PhotonVoice"))
-                    {
-                        GUILayout.Label("Photon Voice 2.57.0 Installed ✔️", checkStyle);
-                    }
-                    else if (voicePath != null)
-                    {
-                        if (GUILayout.Button("Install Photon Voice 2"))
-                        {
-                            AssetDatabase.ImportPackage(voicePath, true);
-                            showVoiceHelpBox = true;
-                        }
-                    }
-                    else
-                    {
-                        EditorGUILayout.HelpBox($"Photon Voice 2 package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
-                    }
-
-                    if (showVoiceHelpBox)
-                    {
-                        EditorGUILayout.HelpBox(
-                            "Make sure to input your 'Photon Voice' App ID in Assets/Photon/Fusion/Resources/PhotonAppSettings.asset",
-                            MessageType.Info);
-                    }
-
                     // --- Game Creator 2 Fusion Module ---
                     string gcFusionFileName = "GC2_Fusion1.2.7.unitypackage";
                     string gcFusionPath = FindPackagePath(gcFusionFileName);
@@ -330,18 +302,6 @@ namespace Spaces.Core.Editor
                     else
                     {
                         EditorGUILayout.HelpBox($"Game Creator 2 Fusion Module package not found in {ASSETS_PATH} or {PACKAGE_PATH}", MessageType.Error);
-                    }
-
-                    // --- Option to Remove PUN (if applicable) ---
-                    GUI.enabled = IsPhotonVoiceInstalled() && HasPun;
-                    if (IsPhotonVoiceInstalled() && GUILayout.Button("Remove PUN from Photon Voice"))
-                    {
-                        RemovePun();
-                    }
-                    GUI.enabled = true;
-                    if (IsPhotonVoiceInstalled() && !HasPun)
-                    {
-                        GUILayout.Label("Pun Removed ✔️", checkStyle);
                     }
 
                     // --- Input System Package ---
@@ -484,28 +444,11 @@ namespace Spaces.Core.Editor
 #endif
         }
 
-        private bool IsPhotonVoiceInstalled()
-        {
-            var result = AppDomain.CurrentDomain.GetAssemblies()
-                .FirstOrDefault(a => a.GetName().Name == "PhotonVoice.Fusion");
-            return result != null;
-        }
-
         private bool IsFusionPhysicsAddOnInstall()
         {
             var result = AppDomain.CurrentDomain.GetAssemblies()
                 .FirstOrDefault(a => a.GetName().Name == "Fusion.Addons.Physics");
             return result != null;
-        }
-
-        public static bool HasPun
-        {
-            get
-            {
-                return Type.GetType("Photon.Pun.PhotonNetwork, Assembly-CSharp") != null ||
-                       Type.GetType("Photon.Pun.PhotonNetwork, Assembly-CSharp-firstpass") != null ||
-                       Type.GetType("Photon.Pun.PhotonNetwork, PhotonUnityNetworking") != null;
-            }
         }
 
         bool IsTextMeshProInstalled()
@@ -523,19 +466,6 @@ namespace Spaces.Core.Editor
                 }
             }
             return false;
-        }
-
-        private static void RemovePun()
-        {
-            DeleteDirectory("Assets/Photon/PhotonVoice/Demos/DemoVoiceProximityChat");
-            DeleteDirectory("Assets/Photon/PhotonVoice/Demos/DemoVoicePun");
-            DeleteDirectory("Assets/Photon/PhotonVoice/Code/PUN");
-            DeleteDirectory("Assets/Photon/PhotonUnityNetworking");
-            CleanUpPunDefineSymbols();
-            if (EditorUtility.DisplayDialog("SPACES SDK", "Please Restart the editor for proper installation", "Restart"))
-            {
-                EditorApplication.OpenProject(Directory.GetCurrentDirectory());
-            }
         }
 
         public static void DeleteDirectory(string path)
@@ -569,42 +499,6 @@ namespace Spaces.Core.Editor
             }
         }
 
-        public static void CleanUpPunDefineSymbols()
-        {
-            foreach (BuildTarget target in Enum.GetValues(typeof(BuildTarget)))
-            {
-                BuildTargetGroup group = BuildPipeline.GetBuildTargetGroup(target);
-                if (group == BuildTargetGroup.Unknown)
-                {
-                    continue;
-                }
-
-                var defineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(group)
-                    .Split(';')
-                    .Select(d => d.Trim())
-                    .ToList();
-
-                List<string> newDefineSymbols = new List<string>();
-                foreach (var symbol in defineSymbols)
-                {
-                    if ("PHOTON_UNITY_NETWORKING".Equals(symbol) || symbol.StartsWith("PUN_2_"))
-                    {
-                        continue;
-                    }
-                    newDefineSymbols.Add(symbol);
-                }
-
-                try
-                {
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(group, string.Join(";", newDefineSymbols.ToArray()));
-                }
-                catch (Exception e)
-                {
-                    Debug.LogErrorFormat("Could not set clean up PUN2's define symbols for build target: {0} group: {1}, {2}", target, group, e);
-                }
-            }
-        }
-
         bool AreAllPackagesInstalled()
         {
             var packageIds = new string[]
@@ -625,10 +519,6 @@ namespace Spaces.Core.Editor
             }
 
             if (!IsFusionInstalled())
-                return false;
-            if (!IsPhotonVoiceInstalled())
-                return false;
-            if (HasPun)
                 return false;
             return true;
         }

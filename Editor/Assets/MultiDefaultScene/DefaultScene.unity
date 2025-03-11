@@ -1053,11 +1053,11 @@ MonoBehaviour:
   m_SetFromSource: 0
   m_OnChangeSet:
     m_Property:
-      rid: 1426401479661453764
+      rid: 1426401487248687654
   references:
     version: 2
     RefIds:
-    - rid: 1426401479661453764
+    - rid: 1426401487248687654
       type: {class: SetStringReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime, asm: Spaces.Core.Runtime}
       data: 
 --- !u!114 &446926981
@@ -1624,7 +1624,7 @@ MonoBehaviour:
               rid: 1426401279288804269
           m_InputRotate:
             m_Input:
-              rid: 1426401479661453765
+              rid: 1426401487248687641
           m_SensitivityX:
             m_Property:
               rid: 1426401279288804271
@@ -1677,7 +1677,7 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 0.15000000596046448
-    - rid: 1426401479661453765
+    - rid: 1426401487248687641
       type: {class: InputValueVector2MouseHold, ns: GameCreator.Runtime.Common, asm: Spaces.Core.Runtime}
       data:
         m_Button: 0
@@ -2487,12 +2487,12 @@ MonoBehaviour:
   m_SetFromSource: 0
   m_OnChangeSet:
     m_Property:
-      rid: 1426401285641339158
+      rid: 1426401487248687655
   references:
     version: 2
     RefIds:
-    - rid: 1426401285641339158
-      type: {class: SetStringNone, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+    - rid: 1426401487248687655
+      type: {class: SetStringPlayerUsername, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
       data: 
 --- !u!114 &1735132007
 MonoBehaviour:
@@ -2611,6 +2611,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736853540}
   m_CullTransparentMesh: 1
+--- !u!1001 &1835751510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930975482317016759, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768954213101293232, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
+      propertyPath: m_Name
+      value: TV1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4796dfdd79de24ab98c177fd4d52bfda, type: 3}
 --- !u!1 &1889355722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2916,7 +2973,7 @@ MonoBehaviour:
     m_Instructions:
     - rid: 1426401279288803916
     - rid: 1426401279288804297
-    - rid: 1426401479661453763
+    - rid: 1426401487248687653
     - rid: 1426401279288804300
   m_TriggerEvent:
     rid: 1426401279288803915
@@ -2985,7 +3042,7 @@ MonoBehaviour:
       type: {class: GetBoolValue, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 0
-    - rid: 1426401479661453763
+    - rid: 1426401487248687653
       type: {class: InstructionSetReactAvatarUrl, ns: NinjutsuGames.FusionNetwork.Runtime.VisualScripting, asm: Spaces.Core.Runtime}
       data:
         m_Breakpoint: 0
@@ -3158,3 +3215,4 @@ SceneRoots:
   - {fileID: 272554632}
   - {fileID: 1012415099}
   - {fileID: 1519185319}
+  - {fileID: 1835751510}

@@ -4532,7 +4532,7 @@ MonoBehaviour:
     m_Instructions:
     - rid: 1426401456016851142
   m_TriggerEvent:
-    rid: 1426401479661454047
+    rid: 1426401487248687456
   references:
     version: 2
     RefIds:
@@ -4549,22 +4549,22 @@ MonoBehaviour:
       type: {class: GetGameObjectConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
         m_Conditions: {fileID: 5341215055455985327}
-    - rid: 1426401479661454047
+    - rid: 1426401487248687456
       type: {class: EventIdle, ns: GameCreator.Runtime.VisualScripting, asm: Spaces.Core.Runtime}
       data:
         gameObjectA:
           m_Property:
-            rid: 1426401479661454104
+            rid: 1426401487248687514
         m_TimeMode:
           m_UpdateTime: 0
         m_IdleTimeThreshold:
           m_Property:
-            rid: 1426401479661454049
-    - rid: 1426401479661454049
+            rid: 1426401487248687458
+    - rid: 1426401487248687458
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 5
-    - rid: 1426401479661454104
+    - rid: 1426401487248687514
       type: {class: GetGameObjectCharactersInstance, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:
         m_Character: {fileID: 8471954932436099644}
@@ -4585,7 +4585,7 @@ MonoBehaviour:
     - rid: 3580573103109963877
     - rid: 1426401456016851269
   m_TriggerEvent:
-    rid: 1426401479661454184
+    rid: 1426401487248687486
   references:
     version: 2
     RefIds:
@@ -4602,22 +4602,22 @@ MonoBehaviour:
       type: {class: GetGameObjectConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
         m_Conditions: {fileID: 517880987708780709}
-    - rid: 1426401479661454184
+    - rid: 1426401487248687486
       type: {class: EventIdleExit, ns: GameCreator.Runtime.VisualScripting, asm: Spaces.Core.Runtime}
       data:
         gameObjectA:
           m_Property:
-            rid: 1426401479661454212
+            rid: 1426401487248687540
         m_TimeMode:
           m_UpdateTime: 0
         m_IdleTimeThreshold:
           m_Property:
-            rid: 1426401479661454186
-    - rid: 1426401479661454186
+            rid: 1426401487248687488
+    - rid: 1426401487248687488
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 1
-    - rid: 1426401479661454212
+    - rid: 1426401487248687540
       type: {class: GetGameObjectCharactersInstance, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:
         m_Character: {fileID: 8471954932436099644}
