@@ -3810,7 +3810,7 @@ MonoBehaviour:
       type: {class: CharacterKernel, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:
         m_Player:
-          rid: 5243232769837892271
+          rid: 5945733642041164051
         m_Motion:
           rid: 5243232769837892272
         m_Driver:
@@ -3878,13 +3878,6 @@ MonoBehaviour:
           m_Type: 1
           m_Human: 6
           m_Path: 
-    - rid: 5243232769837892271
-      type: {class: UnitPlayerDirectional, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data:
-        m_IsControllable: 1
-        m_InputMove:
-          m_Input:
-            rid: 5243232769837892276
     - rid: 5243232769837892272
       type: {class: UnitMotionController, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:
@@ -3923,9 +3916,6 @@ MonoBehaviour:
         m_Axonometry:
           m_Axonometry:
             rid: 5243232769837892279
-    - rid: 5243232769837892276
-      type: {class: InputValueVector2MotionPrimary, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 5243232769837892277
       type: {class: InteractionModeNearCharacter, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:
@@ -3941,6 +3931,16 @@ MonoBehaviour:
         m_TransitionDuration: 0.2
         m_RecoverFaceDown: {fileID: 7400000, guid: 2c2d14e293e6f4e41a81ca7f99e84058, type: 2}
         m_RecoverFaceUp: {fileID: 7400000, guid: 194b77c6fa7d4417088d9e34c980a5aa, type: 2}
+    - rid: 5945733642041164051
+      type: {class: UnitPlayerDirectional, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data:
+        m_IsControllable: 1
+        m_InputMove:
+          m_Input:
+            rid: 5945733642041164052
+    - rid: 5945733642041164052
+      type: {class: InputValueVector2MotionPrimary, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data: 
     - rid: 8945157561501352798
       type: {class: UnitDriverController, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
       data:

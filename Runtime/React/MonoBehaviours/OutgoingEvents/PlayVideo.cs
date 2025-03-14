@@ -3,42 +3,24 @@ using Spaces.React.Runtime;
 
 public class PlayVideo : MonoBehaviour
 {
-    private bool isEditMode;
-
     private void OnEnable()
     {
-        ReactIncomingEvent.OnToggleEditMode += HandleEditModeToggle;
+        // Removed subscription to OnToggleEditMode
     }
 
     private void OnDisable()
     {
-        ReactIncomingEvent.OnToggleEditMode -= HandleEditModeToggle;
-    }
-
-    private void HandleEditModeToggle(bool editMode)
-    {
-        isEditMode = editMode;
+        // Removed unsubscription from OnToggleEditMode
     }
 
     private void OnMouseDown()
     {
-        if (isEditMode)
+        // Removed edit mode conditional logic
+        Debug.Log("Unity: Clicked to play video for game object - name: " + gameObject.name);
+        PlayVideoData playVideoData = new PlayVideoData
         {
-            Debug.Log("Unity: Edit mode active, opening edit modal for game object - name: " + gameObject.name);
-            EditModeData editModeData = new EditModeData
-            {
-                gameObjectName = gameObject.name
-            };
-            ReactRaiseEvent.OpenEditModal(editModeData);
-        }
-        else
-        {
-            Debug.Log("Unity: Clicked to play video for game object - name: " + gameObject.name);
-            PlayVideoData playVideoData = new PlayVideoData
-            {
-                gameObjectName = gameObject.name
-            };
-            ReactRaiseEvent.PlayVideo(playVideoData);
-        }
+            gameObjectName = gameObject.name
+        };
+        ReactRaiseEvent.PlayVideo(playVideoData);
     }
 }

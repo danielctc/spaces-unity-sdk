@@ -77,31 +77,6 @@ public static class ReactRaiseEvent
         Debug.Log("Unity: End Raising PlayerInstantiated event");
     }
 
-    // New addition to toggle edit mode
-    [DllImport("__Internal")]
-    private static extern void JsToggleEditMode(bool isEditMode);
-
-    public static void ToggleEditMode(bool isEditMode)
-    {
-        Debug.Log("Unity: Raising ToggleEditMode event: " + isEditMode);
-#if !UNITY_EDITOR && UNITY_WEBGL
-        JsToggleEditMode(isEditMode);
-#endif
-    }
-
-    // New addition to open the edit modal in React
-    [DllImport("__Internal")]
-    private static extern void JsOpenEditModal(string editModeDataJson);
-
-    public static void OpenEditModal(EditModeData editModeData)
-    {
-        string editModeDataJson = JsonUtility.ToJson(editModeData);
-        Debug.Log("Unity: Raising OpenEditModal event: " + editModeDataJson);
-#if !UNITY_EDITOR && UNITY_WEBGL
-        JsOpenEditModal(editModeDataJson);
-#endif
-    }
-
     // Existing nameplate modal method
     [DllImport("__Internal")]
     private static extern void JsOpenNameplateModal(string nameplateDataJson);

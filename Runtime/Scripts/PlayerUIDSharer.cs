@@ -167,7 +167,7 @@ public class PlayerUIDSharer : NetworkBehaviour
         OnPlayerUIDUpdated?.Invoke(playerId, NetworkedUID.Value);
         
         // Also directly update the PlayerManager if we can find it
-        var playerManager = FindObjectOfType<PlayerManager>();
+        var playerManager = FindAnyObjectByType<PlayerManager>();
         if (playerManager != null)
         {
             playerManager.SetPlayerUID(playerId, NetworkedUID.Value);

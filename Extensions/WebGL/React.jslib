@@ -44,19 +44,6 @@ mergeInto(LibraryManager.library, {
     window.dispatchEvent(event);
   },
 
-  // New function for toggling edit mode
-  JsToggleEditMode: function (isEditMode) {
-    console.log("Unity: Dispatching ToggleEditMode event with data:", isEditMode);
-    window.dispatchReactUnityEvent("ToggleEditMode", isEditMode ? "true" : "false");
-  },
-
-  // New function for opening the edit modal
-  JsOpenEditModal: function (objectPointer) {
-    var jsonData = UTF8ToString(objectPointer);
-    console.log("Unity: Dispatching OpenEditModal event with data:", jsonData);
-    window.dispatchReactUnityEvent("OpenEditModal", jsonData);
-  },
-
   // New function for nameplate click
   JsOpenNameplateModal: function (objectPointer) {
     var jsonData = UTF8ToString(objectPointer);
@@ -69,5 +56,47 @@ mergeInto(LibraryManager.library, {
     var jsonData = UTF8ToString(objectPointer);
     console.log("Unity: Dispatching UpdatePlayerList event with data:", jsonData);
     window.dispatchReactUnityEvent("UpdatePlayerList", jsonData);
+  },
+
+  // New function for registering a MediaScreen
+  JsRegisterMediaScreen: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching RegisterMediaScreen event with data:", jsonData);
+    window.dispatchReactUnityEvent("RegisterMediaScreen", jsonData);
+  },
+  
+  // New function for sending MediaScreen clicks
+  JsSendMediaScreenClick: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching MediaScreenClick event with data:", jsonData);
+    window.dispatchReactUnityEvent("MediaScreenClick", jsonData);
+  },
+  
+  // New function for setting images on MediaScreens
+  JsSetMediaScreenImage: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching SetMediaScreenImage event with data:", jsonData);
+    window.dispatchReactUnityEvent("SetMediaScreenImage", jsonData);
+  },
+  
+  // New function for setting thumbnails on MediaScreens
+  JsSetMediaScreenThumbnail: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching SetMediaScreenThumbnail event with data:", jsonData);
+    window.dispatchReactUnityEvent("SetMediaScreenThumbnail", jsonData);
+  },
+  
+  // New function for forcing updates on MediaScreens
+  JsForceUpdateMediaScreen: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching ForceUpdateMediaScreen event with data:", jsonData);
+    window.dispatchReactUnityEvent("ForceUpdateMediaScreen", jsonData);
+  },
+  
+  // New function for playing videos on MediaScreens
+  JsPlayMediaScreenVideo: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching PlayMediaScreenVideo event with data:", jsonData);
+    window.dispatchReactUnityEvent("PlayMediaScreenVideo", jsonData);
   }
 });

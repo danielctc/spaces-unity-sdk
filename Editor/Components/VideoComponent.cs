@@ -44,7 +44,7 @@ namespace Spaces.Core.Editor
         private static int GetNextTVNumber()
         {
             // Find all GameObjects that start with "TV" followed by a number
-            var existingTVs = Object.FindObjectsOfType<GameObject>()
+            var existingTVs = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None)
                 .Where(go => go.name.StartsWith("TV") && char.IsDigit(go.name.FirstOrDefault(c => char.IsDigit(c))))
                 .ToList();
             

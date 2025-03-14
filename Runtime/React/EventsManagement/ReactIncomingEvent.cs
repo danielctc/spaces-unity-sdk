@@ -29,10 +29,25 @@ namespace Spaces.React.Runtime
         public delegate void SetThumbnailHandler(ThumbnailData data);
         public static event SetThumbnailHandler OnReactSetThumbnail;
 
+        // Add delegate and event for MediaScreen
+        public delegate void MediaScreenHandler(MediaScreenData data);
+        public static event MediaScreenHandler OnReactMediaScreen;
         
-        // New delegate and event for ToggleEditMode
-        public delegate void ToggleEditModeHandler(bool isEditMode);
-        public static event ToggleEditModeHandler OnToggleEditMode;
+        // Add delegate and event for SetMediaScreenImage
+        public delegate void SetMediaScreenImageHandler(MediaScreenImageData data);
+        public static event SetMediaScreenImageHandler OnReactSetMediaScreenImage;
+        
+        // Add delegate and event for SetMediaScreenThumbnail
+        public delegate void SetMediaScreenThumbnailHandler(MediaScreenThumbnailData data);
+        public static event SetMediaScreenThumbnailHandler OnReactSetMediaScreenThumbnail;
+        
+        // Add delegate and event for ForceUpdateMediaScreen
+        public delegate void ForceUpdateMediaScreenHandler(ForceUpdateMediaScreenData data);
+        public static event ForceUpdateMediaScreenHandler OnReactForceUpdateMediaScreen;
+        
+        // Add delegate and event for PlayMediaScreenVideo
+        public delegate void PlayMediaScreenVideoHandler(PlayMediaScreenVideoData data);
+        public static event PlayMediaScreenVideoHandler OnPlayMediaScreenVideo;
 
         private void Awake()
         {
@@ -103,12 +118,39 @@ namespace Spaces.React.Runtime
                     OnReactSetThumbnail?.Invoke(thumbnailData);
                     break;
 
-
-                // Handle the ToggleEditMode event
-                case "ToggleEditMode":
-                    Debug.Log("Unity: ToggleEditMode received");
-                    bool isEditMode = bool.Parse(eventData);
-                    OnToggleEditMode?.Invoke(isEditMode);
+                // Handle the MediaScreen event
+                case "MediaScreen":
+                    Debug.Log("Unity: MediaScreen event received");
+                    MediaScreenData mediaScreenData = JsonUtility.FromJson<MediaScreenData>(eventData);
+                    OnReactMediaScreen?.Invoke(mediaScreenData);
+                    break;
+                    
+                // Handle the SetMediaScreenImage event
+                case "SetMediaScreenImage":
+                    Debug.Log("Unity: SetMediaScreenImage event received");
+                    MediaScreenImageData mediaScreenImageData = JsonUtility.FromJson<MediaScreenImageData>(eventData);
+                    OnReactSetMediaScreenImage?.Invoke(mediaScreenImageData);
+                    break;
+                    
+                // Handle the SetMediaScreenThumbnail event
+                case "SetMediaScreenThumbnail":
+                    Debug.Log("Unity: SetMediaScreenThumbnail event received");
+                    MediaScreenThumbnailData mediaScreenThumbnailData = JsonUtility.FromJson<MediaScreenThumbnailData>(eventData);
+                    OnReactSetMediaScreenThumbnail?.Invoke(mediaScreenThumbnailData);
+                    break;
+                    
+                // Handle the ForceUpdateMediaScreen event
+                case "ForceUpdateMediaScreen":
+                    Debug.Log("Unity: ForceUpdateMediaScreen event received");
+                    ForceUpdateMediaScreenData forceUpdateMediaScreenData = JsonUtility.FromJson<ForceUpdateMediaScreenData>(eventData);
+                    OnReactForceUpdateMediaScreen?.Invoke(forceUpdateMediaScreenData);
+                    break;
+                    
+                // Handle the PlayMediaScreenVideo event
+                case "PlayMediaScreenVideo":
+                    Debug.Log("Unity: PlayMediaScreenVideo event received");
+                    PlayMediaScreenVideoData playMediaScreenVideoData = JsonUtility.FromJson<PlayMediaScreenVideoData>(eventData);
+                    OnPlayMediaScreenVideo?.Invoke(playMediaScreenVideoData);
                     break;
 
                 default:
