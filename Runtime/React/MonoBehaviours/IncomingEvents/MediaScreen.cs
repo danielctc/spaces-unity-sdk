@@ -11,8 +11,8 @@ namespace Spaces.React.Runtime
         [Tooltip("The target mesh where the image will be rendered.")]
         public MeshRenderer targetRenderer;
         
-        [Tooltip("Optional play button overlay for video content.")]
-        public GameObject playButtonOverlay;
+        /*[Tooltip("Optional play button overlay for video content.")]
+        public GameObject playButtonOverlay;*/
 
         [Tooltip("Unique identifier for this media screen (required for React)")]
         public string screenId = "";
@@ -57,7 +57,7 @@ namespace Spaces.React.Runtime
                 }
             }
             
-            // Create play button overlay if it doesn't exist
+            /*// Create play button overlay if it doesn't exist
             if (playButtonOverlay == null)
             {
                 // You can create a simple play button overlay here or use a prefab
@@ -69,7 +69,7 @@ namespace Spaces.React.Runtime
             if (playButtonOverlay != null)
             {
                 playButtonOverlay.SetActive(false);
-            }
+            }*/
             
             // Ensure we have a collider for click detection
             if (GetComponent<Collider>() == null)
@@ -249,11 +249,11 @@ namespace Spaces.React.Runtime
                 // Start loading the image as a texture
                 LoadImageWithCacheControl(data.imageUrl, false, 0);
                 
-                // Hide play button for regular images
+                /*// Hide play button for regular images
                 if (playButtonOverlay != null)
                 {
                     playButtonOverlay.SetActive(false);
-                }
+                }*/
             }
         }
         
@@ -292,11 +292,11 @@ namespace Spaces.React.Runtime
                     // Start loading the image as a texture
                     LoadImageWithCacheControl(data.imageUrl, shouldForceRefresh, data.refreshTimestamp);
                     
-                    // Hide play button for regular images
+                    /*// Hide play button for regular images
                     if (playButtonOverlay != null)
                     {
                         playButtonOverlay.SetActive(false);
-                    }
+                    }*/
                 }
                 // For videos, we'll wait for the thumbnail event
                 else
@@ -304,11 +304,11 @@ namespace Spaces.React.Runtime
                     // Don't try to load the video URL directly
                     // Just update the state and wait for the thumbnail
                     
-                    // Show play button for videos if displayAsVideo is true
+                    /*// Show play button for videos if displayAsVideo is true
                     if (playButtonOverlay != null)
                     {
                         playButtonOverlay.SetActive(displayAsVideo);
-                    }
+                    }*/
                 }
             }
         }
@@ -340,11 +340,11 @@ namespace Spaces.React.Runtime
                 // Start loading the thumbnail as a texture
                 LoadImageWithCacheControl(data.thumbnailUrl, shouldForceRefresh, data.refreshTimestamp);
                 
-                // Show play button based on displayAsVideo flag
+                /*// Show play button based on displayAsVideo flag
                 if (playButtonOverlay != null)
                 {
                     playButtonOverlay.SetActive(displayAsVideo);
-                }
+                }*/
             }
         }
         
@@ -378,11 +378,11 @@ namespace Spaces.React.Runtime
                         LoadImageWithCacheControl(currentThumbnailUrl, true, data.refreshTimestamp);
                     }
                     
-                    // Show play button
+                    /*// Show play button
                     if (playButtonOverlay != null)
                     {
                         playButtonOverlay.SetActive(true);
-                    }
+                    }*/
                 }
                 else
                 {
@@ -392,11 +392,11 @@ namespace Spaces.React.Runtime
                         LoadImageWithCacheControl(currentImageUrl, true, data.refreshTimestamp);
                     }
                     
-                    // Hide play button
+                    /*// Hide play button
                     if (playButtonOverlay != null)
                     {
                         playButtonOverlay.SetActive(false);
-                    }
+                    }*/
                 }
             }
         }
@@ -489,11 +489,11 @@ namespace Spaces.React.Runtime
                 // Start loading the image as a texture
                 LoadImageWithCacheControl(imageUrl, true, timestamp);
                 
-                // Show/hide play button based on displayAsVideo flag
+                /*// Show/hide play button based on displayAsVideo flag
                 if (playButtonOverlay != null)
                 {
                     playButtonOverlay.SetActive(displayAsVideo);
-                }
+                }*/
             }
         }
         
@@ -513,11 +513,11 @@ namespace Spaces.React.Runtime
                 // Start loading the thumbnail as a texture
                 LoadImageWithCacheControl(thumbnailUrl, true, timestamp);
                 
-                // Show/hide play button based on displayAsVideo flag
+                /*// Show/hide play button based on displayAsVideo flag
                 if (playButtonOverlay != null)
                 {
                     playButtonOverlay.SetActive(displayAsVideo);
-                }
+                }*/
             }
         }
         
@@ -539,7 +539,7 @@ namespace Spaces.React.Runtime
             HandleForceUpdateMediaScreen(data);
         }
         
-        // Create a simple play button overlay
+        /*// Create a simple play button overlay
         private GameObject CreatePlayButtonOverlay()
         {
             GameObject playButton = new GameObject("PlayButton");
@@ -599,7 +599,7 @@ namespace Spaces.React.Runtime
             mesh.RecalculateNormals();
             
             return mesh;
-        }
+        }*/
         
         // Support for Unity's EventSystem click detection
         public void OnPointerClick(PointerEventData eventData)
