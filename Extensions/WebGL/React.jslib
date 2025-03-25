@@ -98,5 +98,63 @@ mergeInto(LibraryManager.library, {
     var jsonData = UTF8ToString(objectPointer);
     console.log("Unity: Dispatching PlayMediaScreenVideo event with data:", jsonData);
     window.dispatchReactUnityEvent("PlayMediaScreenVideo", jsonData);
+  },
+  
+  // New function for notifying Unity about keyboard capture state using SendMessage
+  JsKeyboardCaptureRequest: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Processing KeyboardCaptureRequest with data:", jsonData);
+    
+    try {
+      var data = JSON.parse(jsonData);
+      
+      // Use SendMessage to directly set the keyboard capture state
+      // This is more reliable than the event system for input handling
+      if (typeof unityInstance !== 'undefined') {
+        console.log("Unity: Sending SetCaptureAllKeyboardInput via SendMessage with value:", data.captureKeyboard);
+        unityInstance.SendMessage("WebGLInput", "SetCaptureAllKeyboardInput", data.captureKeyboard);
+        
+        // Add compatibility with the React approach of directly modifying WebGLInputHandler
+        if (unityInstance.Module) {
+          if (data.captureKeyboard === false) {
+            // If disabling capture, store the handler if needed and clear it
+            if (typeof window._originalWebGLInputHandler === 'undefined' && 
+                unityInstance.Module.WebGLInputHandler) {
+              window._originalWebGLInputHandler = unityInstance.Module.WebGLInputHandler;
+            }
+            // Set handler to null to stop keyboard capture
+            unityInstance.Module.WebGLInputHandler = null;
+            console.log("Unity: Disabled WebGLInputHandler for React compatibility");
+          } else {
+            // If enabling capture, restore the original handler
+            if (typeof window._originalWebGLInputHandler !== 'undefined') {
+              unityInstance.Module.WebGLInputHandler = window._originalWebGLInputHandler;
+              console.log("Unity: Restored WebGLInputHandler for React compatibility");
+            }
+          }
+        }
+      } else {
+        console.warn("Unity: unityInstance not available, cannot send SendMessage");
+        
+        // Fall back to event system
+        window.dispatchReactUnityEvent("KeyboardCaptureRequest", jsonData);
+      }
+    } catch (error) {
+      console.error("Unity: Error processing KeyboardCaptureRequest:", error);
+      
+      // Fall back to event system
+      window.dispatchReactUnityEvent("KeyboardCaptureRequest", jsonData);
+    }
+  },
+  
+  // Add RunJavaScript function to run JS from Unity
+  RunJavaScript: function(jsCodePtr) {
+    var jsCode = UTF8ToString(jsCodePtr);
+    try {
+      console.log('[Unity] Executing JavaScript');
+      eval(jsCode);
+    } catch(e) {
+      console.error('[Unity] Error executing JavaScript:', e);
+    }
   }
 });

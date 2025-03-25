@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 457e970a3940a4053a7476f3dc0eae02
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: WebGL Video Streaming Player
+  packageVersion: Version 3.4.1
+  assetPath: Assets/HISPlayerSample/Scripts/HISPlayerController.cs
+  uploadId: 659935

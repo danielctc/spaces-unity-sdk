@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 716269a99df6e4424b661e8f10bb0c6d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: WebGL Video Streaming Player
+  packageVersion: Version 3.4.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayerSDK_Documentation.pdf
+  uploadId: 659935

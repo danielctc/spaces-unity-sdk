@@ -101,4 +101,20 @@ public static class ReactRaiseEvent
         JsUpdatePlayerList(jsonData);
 #endif
     }
+
+    // Add this method to the ReactRaiseEvent class
+    public static void SendKeyboardCaptureRequest(KeyboardCaptureRequestData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending keyboard capture request: {jsonData}");
+
+    #if UNITY_WEBGL && !UNITY_EDITOR
+        JsKeyboardCaptureRequest(jsonData);
+    #else
+        Debug.Log($"[SendKeyboardCaptureRequest] Would send to React: {jsonData}");
+    #endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void JsKeyboardCaptureRequest(string jsonData);
 }

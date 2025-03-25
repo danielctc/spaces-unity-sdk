@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1418d012609941fea780eb837901a5e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: WebGL Video Streaming Player
+  packageVersion: Version 3.4.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/Default/HisPlayerUnityDLL.xml
+  uploadId: 659935

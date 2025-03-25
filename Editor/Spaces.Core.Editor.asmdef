@@ -7,7 +7,8 @@
         "GUID:1b36810b8d0584c6c9e3b8a493c466f5",
         "GUID:fa216a02d195f46dfac1c6346fe5a4ee",
         "GUID:c668b7a00ffe56a498ddb1fc9f96f4e6",
-        "Spaces.Core.Runtime"
+        "GUID:576b1892dea5e419cae3270bcd4243d5",
+        "GUID:57573bb0d46dd4056b01f4e847da5478"
     ],
     "includePlatforms": [
         "Editor",

@@ -49,6 +49,10 @@ namespace Spaces.React.Runtime
         public delegate void PlayMediaScreenVideoHandler(PlayMediaScreenVideoData data);
         public static event PlayMediaScreenVideoHandler OnPlayMediaScreenVideo;
 
+        // Add delegate and event for KeyboardCaptureRequest
+        public delegate void KeyboardCaptureRequestHandler(KeyboardCaptureRequestData data);
+        public static event KeyboardCaptureRequestHandler OnKeyboardCaptureRequest;
+
         private void Awake()
         {
             if (Instance == null)
@@ -151,6 +155,19 @@ namespace Spaces.React.Runtime
                     Debug.Log("Unity: PlayMediaScreenVideo event received");
                     PlayMediaScreenVideoData playMediaScreenVideoData = JsonUtility.FromJson<PlayMediaScreenVideoData>(eventData);
                     OnPlayMediaScreenVideo?.Invoke(playMediaScreenVideoData);
+                    break;
+
+                // Handle the KeyboardCaptureRequest event
+                case "KeyboardCaptureRequest":
+                    Debug.Log("Unity: KeyboardCaptureRequest event received");
+                    KeyboardCaptureRequestData keyboardCaptureRequestData = JsonUtility.FromJson<KeyboardCaptureRequestData>(eventData);
+                    OnKeyboardCaptureRequest?.Invoke(keyboardCaptureRequestData);
+                    
+                    // Process immediately since this is important for input handling
+                    #if UNITY_WEBGL && !UNITY_EDITOR
+                    WebGLInput.captureAllKeyboardInput = keyboardCaptureRequestData.captureKeyboard;
+                    Debug.Log($"Unity: Set WebGLInput.captureAllKeyboardInput to {keyboardCaptureRequestData.captureKeyboard}");
+                    #endif
                     break;
 
                 default:
