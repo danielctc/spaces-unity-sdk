@@ -117,4 +117,28 @@ public static class ReactRaiseEvent
 
     [DllImport("__Internal")]
     private static extern void JsKeyboardCaptureRequest(string jsonData);
+
+    // Add new method for HLS Stream status updates
+    [DllImport("__Internal")]
+    private static extern void JsSetHLSStream(string jsonData);
+
+    public static void SendHLSStreamStatus(string identifier, string playerIndex, bool isReady, bool isPlaying)
+    {
+        // Create anonymous type for JSON serialization
+        var statusData = new { 
+            identifier = identifier,
+            playerIndex = playerIndex, 
+            isReady = isReady, 
+            isPlaying = isPlaying 
+        };
+        
+        string jsonData = JsonUtility.ToJson(statusData);
+        Debug.Log($"Unity: Sending HLSStreamStatus to React with data: {jsonData}");
+        
+        #if !UNITY_EDITOR && UNITY_WEBGL
+        JsSetHLSStream(jsonData);
+        #else
+        Debug.Log("Not running in WebGL build, JavaScript function not called.");
+        #endif
+    }
 }

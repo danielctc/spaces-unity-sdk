@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: be68a4a6508aaa54ba7b82c5d52e4383
+PackageManifestImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/package.json
+  uploadId: 741822

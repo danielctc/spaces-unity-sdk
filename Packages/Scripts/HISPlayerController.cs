@@ -55,11 +55,10 @@ namespace HISPlayer
         /// </summary>
         private List<bool> isQuality720 = new List<bool>();
 
-        private bool isDurationLimitReached = false;
         private string errorText = "";
         private string[] videoSamples = {
-            "https://content.hisplayer.com/getmedia/master.m3u8?contentKey=s7PwvPwJ",
-            "https://content.hisplayer.com/getmedia/master.m3u8?contentKey=GdCDsEmW",
+            "https://content.hisplayer.com/getmedia/master.m3u8?contentKey=s7PwvPwJ&protocol=hls",
+            "https://content.hisplayer.com/getmedia/master.m3u8?contentKey=GdCDsEmW&protocol=hls",
         };
 
         #region UNITY FUNCTIONS
@@ -73,12 +72,11 @@ namespace HISPlayer
             SetUpPlayer();
             totalScreens = multiStreamProperties.Count;
 
-            int nextVideo = 0;
             for (int i = 0; i < totalScreens; i++)
             {
                 StreamProperties stream = multiStreamProperties[i];
                 isPlaying.Add(stream.autoPlay);
-                videoIndex.Add(nextVideo);
+                videoIndex.Add(i);
                 isSeeking.Add(false);
                 isPlaybackReady.Add(false);
                 isQuality720.Add(false);
@@ -86,9 +84,6 @@ namespace HISPlayer
                 SetVolume(i, isMuted[i] ? 0.0f : 1.0f);
                 StartCoroutine(StartSomeValues(i));
                 StartCoroutine(UpdateVideoPosition(i));
-                nextVideo++;
-                if (nextVideo >= videoSamples.Length)
-                    nextVideo = 0;
             }
 
             HISPlayerUIHelper.InitUI(this);
@@ -289,11 +284,6 @@ namespace HISPlayer
             HISPlayerUIHelper.UpdateMuteButton(playerIndex);
             SetVolume(playerIndex, isMuted[playerIndex] ? 0.0f : 1.0f);
 
-            //if (isPlaying[playerIndex])
-            //    Play(playerIndex);
-            //else
-            //    Pause(playerIndex);
-
             SetPlaybackSpeedRate(playerIndex, 1.0f);
             HISPlayerUIHelper.UpdateSpeedRateText(playerIndex, 1.0f);
         }
@@ -363,7 +353,11 @@ namespace HISPlayer
         protected override void EventPlaybackPlay(HISPlayerEventInfo eventInfo)
         {
             base.EventPlaybackPlay(eventInfo);
-            HISPlayerUIHelper.UpdateErrorText(eventInfo.playerIndex, "");
+            int playerIndex = eventInfo.playerIndex;
+            isPlaying[playerIndex] = true;
+
+            HISPlayerUIHelper.UpdateErrorText(playerIndex, "");
+            HISPlayerUIHelper.UpdatePlayPauseButton(playerIndex);
         }
 
         protected override void EventPlaybackReady(HISPlayerEventInfo eventInfo)
@@ -381,8 +375,12 @@ namespace HISPlayer
         protected override void EventEndOfPlaylist(HISPlayerEventInfo eventInfo)
         {
             base.EventEndOfPlaylist(eventInfo);
+
             int playerIndex = eventInfo.playerIndex;
-            videoIndex[playerIndex] = 0;
+
+            if (multiStreamProperties[playerIndex].LoopPlayback)
+                return;
+
             isPlaybackReady[playerIndex] = false;
             isPlaying[playerIndex] = false;
 
@@ -420,7 +418,7 @@ namespace HISPlayer
             errorText = errorInfo.stringInfo;
             if (errorInfo.errorType == HISPlayerError.HISPLAYER_ERROR_PLAYBACK_DURATION_LIMIT_REACHED)
             {
-                isDurationLimitReached = true;
+                HISPlayerUIHelper.UpdateErrorText(errorInfo.playerIndex, errorText);
                 return;
             }
 
@@ -433,12 +431,6 @@ namespace HISPlayer
             int playerIndex = eventInfo.playerIndex;
             isPlaying[playerIndex] = false;
             HISPlayerUIHelper.UpdatePlayPauseButton(playerIndex);
-
-            if (isDurationLimitReached)
-            {
-                isDurationLimitReached = false;
-                HISPlayerUIHelper.UpdateErrorText(playerIndex, errorText);
-            }
         }
 
         #endregion

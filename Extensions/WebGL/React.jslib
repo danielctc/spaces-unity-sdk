@@ -156,5 +156,12 @@ mergeInto(LibraryManager.library, {
     } catch(e) {
       console.error('[Unity] Error executing JavaScript:', e);
     }
-  }
+  },
+
+  // New function for setting HLS Stream URL
+  JsSetHLSStream: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching SetHLSStream event with data:", jsonData);
+    window.dispatchReactUnityEvent("SetHLSStream", jsonData);
+  },
 });

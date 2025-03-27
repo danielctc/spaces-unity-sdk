@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: ae682c3fc6ba24793a043cc93b412c2e
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 0
+  isOverridable: 1
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+  - first:
+      Android: Android
+    second:
+      enabled: 1
+      settings: {}
+  - first:
+      Any: 
+    second:
+      enabled: 0
+      settings: {}
+  - first:
+      Editor: Editor
+    second:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Plugins/Android/hisPlayerAndroid-release.aar
+  uploadId: 741822

@@ -84,7 +84,11 @@ namespace HISPlayer
             if (playerIndex < 0)
                 UpdateGeneralErrorText(info);
             else
+            {
+                generalErrorText.gameObject.SetActive(false);
+                generalErrorText.text = "";
                 errorText[playerIndex].text = info;
+            }
         }
 
         public void UpdateGeneralErrorText(string info)

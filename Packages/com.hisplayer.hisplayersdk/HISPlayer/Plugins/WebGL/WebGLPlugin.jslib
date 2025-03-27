@@ -214,11 +214,19 @@ mergeInto(LibraryManager.library, {
   },
   
   HISPLAYERUnity_GetPlaybackDurationLimit : function() {
-	return getPlaybackDurationLimit();
+    return getPlaybackDurationLimit();
   },
 
   HISPLAYERUnity_GetIsDurationLimitReady : function() {
-	return getIsDurationLimitReady();
+    return getIsDurationLimitReady();
+  },
+
+  HISPLAYERUnity_GetPlaybackSpeedRate : function() {
+    return multiView.getPlaybackSpeedRate();
+  },
+
+  HISPLAYERUnity_SetPlaybackSpeedRate : function (speed) {
+    multiView.setPlaybackSpeedRate(speed);
   },
 
   HISPLAYERUnity_Log : function (level, message) {

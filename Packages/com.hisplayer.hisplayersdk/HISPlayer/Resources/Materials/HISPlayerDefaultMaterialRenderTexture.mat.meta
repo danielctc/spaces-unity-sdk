@@ -9,7 +9,7 @@ NativeFormatImporter:
 AssetOrigin:
   serializedVersion: 1
   productId: 283452
-  packageName: WebGL Video Streaming Player
-  packageVersion: Version 3.4.1
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
   assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Resources/Materials/HISPlayerDefaultMaterialRenderTexture.mat
-  uploadId: 659935
+  uploadId: 741822

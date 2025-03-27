@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5db9e691418d54cb0b8b85df9ea4c3a4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Resources/RenderTextures/HISPlayer180RenderTexture.renderTexture
+  uploadId: 741822

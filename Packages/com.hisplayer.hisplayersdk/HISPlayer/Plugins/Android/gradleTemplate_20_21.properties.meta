@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 180d5b5dba4d3428f8b573302482492f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Plugins/Android/gradleTemplate_20_21.properties
+  uploadId: 741822

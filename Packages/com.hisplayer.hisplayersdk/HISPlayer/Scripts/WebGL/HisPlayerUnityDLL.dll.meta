@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 964fae4c137e64a079da94f16e1803b7
+guid: 911419806bc6b4679aa963053e4bfa27
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -24,7 +24,6 @@ PluginImporter:
         Exclude Win: 1
         Exclude Win64: 1
         Exclude iOS: 1
-        Exclude tvOS: 1
   - first:
       Android: Android
     second:
@@ -88,21 +87,13 @@ PluginImporter:
         CPU: AnyCPU
         CompileFlags: 
         FrameworkDependencies: 
-  - first:
-      tvOS: tvOS
-    second:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-        CompileFlags: 
-        FrameworkDependencies: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 283452
-  packageName: WebGL Video Streaming Player
-  packageVersion: Version 3.4.1
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
   assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/WebGL/HisPlayerUnityDLL.dll
-  uploadId: 659935
+  uploadId: 741822

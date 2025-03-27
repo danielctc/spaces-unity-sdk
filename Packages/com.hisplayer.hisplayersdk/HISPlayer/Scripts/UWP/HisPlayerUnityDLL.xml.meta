@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4b26e49cef2cb4e3faa954d433ed8673
+guid: 7e093e168697e499c9da4a2a2c7c51e7
 TextScriptImporter:
   externalObjects: {}
   userData: 
@@ -8,7 +8,7 @@ TextScriptImporter:
 AssetOrigin:
   serializedVersion: 1
   productId: 283452
-  packageName: WebGL Video Streaming Player
-  packageVersion: Version 3.4.1
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
   assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/UWP/HisPlayerUnityDLL.xml
-  uploadId: 659935
+  uploadId: 741822

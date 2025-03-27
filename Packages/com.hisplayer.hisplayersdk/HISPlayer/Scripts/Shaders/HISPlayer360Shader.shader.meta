@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 244c5c7285c8d4536ab9da7c0cec4583
+guid: aba62d1e315424848bbda6e54d6d1127
 ShaderImporter:
   externalObjects: {}
   defaultTextures: []
@@ -11,7 +11,7 @@ ShaderImporter:
 AssetOrigin:
   serializedVersion: 1
   productId: 283452
-  packageName: WebGL Video Streaming Player
-  packageVersion: Version 3.4.1
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
   assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/Shaders/HISPlayer360Shader.shader
-  uploadId: 659935
+  uploadId: 741822

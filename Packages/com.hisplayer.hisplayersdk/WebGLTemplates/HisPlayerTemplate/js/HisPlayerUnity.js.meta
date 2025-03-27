@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: eea042f19415642098ad95192d02d7f0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283452
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
+  assetPath: Packages/com.hisplayer.hisplayersdk/WebGLTemplates/HisPlayerTemplate/js/HisPlayerUnity.js
+  uploadId: 741822

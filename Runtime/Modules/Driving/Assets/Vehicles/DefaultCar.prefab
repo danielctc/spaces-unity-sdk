@@ -408,32 +408,13 @@ MonoBehaviour:
         m_Description: 
         m_ConditionList:
           m_Conditions:
-          - rid: 7096007717204000773
-          - rid: 7096007828469448708
+          - rid: -2
+          - rid: -2
         m_InstructionList:
           m_Instructions:
           - rid: 7096007828469448717
           - rid: 7096007828469448721
           - rid: 7096007828469448729
-    - rid: 7096007717204000773
-      type: {class: ConditionCurrentDamage, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
-        damageThreshold: 25
-    - rid: 7096007828469448708
-      type: {class: ConditionFrontDamage, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
     - rid: 7096007828469448710
       type: {class: Branch, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -442,32 +423,13 @@ MonoBehaviour:
         m_Description: 
         m_ConditionList:
           m_Conditions:
-          - rid: 7096007828469448711
-          - rid: 7096007828469448712
+          - rid: -2
+          - rid: -2
         m_InstructionList:
           m_Instructions:
           - rid: 7096007828469448719
           - rid: 7096007828469448726
           - rid: 7096007828469448733
-    - rid: 7096007828469448711
-      type: {class: ConditionCurrentDamage, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
-        damageThreshold: 25
-    - rid: 7096007828469448712
-      type: {class: ConditionFrontDamage, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
     - rid: 7096007828469448717
       type: {class: InstructionGameObjectEnableCollider, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -944,7 +906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 9205400602406551896
+    - rid: -2
   m_TriggerEvent:
     rid: 9205400602406551888
   references:
@@ -972,14 +934,6 @@ MonoBehaviour:
       type: {class: InputButtonKeyboardPress, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Key: 31
-    - rid: 9205400602406551896
-      type: {class: InstructionStarLookLeft, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!114 &9054910953438454551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 9205400602406551898
+    - rid: -2
   m_TriggerEvent:
     rid: 9205400602406551891
   references:
@@ -1022,14 +976,6 @@ MonoBehaviour:
       type: {class: InputButtonKeyboardRelease, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Key: 31
-    - rid: 9205400602406551898
-      type: {class: InstructionStopLookLeft, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &712959025722100342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,28 +1097,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 7096007605350039708
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7096007605350039708
-      type: {class: InstructionRefuel, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
-        fuelAmount:
-          m_Property:
-            rid: -2
-        m_Transition:
-          m_Duration: 50
-          m_Easing: 0
-          m_Time: 0
-          m_WaitToComplete: 0
 --- !u!1 &958027412221940854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,28 +1845,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 9205400602406551928
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 9205400602406551928
-      type: {class: InstructionRepair, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
-        repairAmount:
-          m_Property:
-            rid: -2
-        m_Transition:
-          m_Duration: 0
-          m_Easing: 0
-          m_Time: 0
-          m_WaitToComplete: 0
 --- !u!1 &1221181300596292448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,10 +2044,12 @@ MonoBehaviour:
     m_Instructions:
     - rid: 7096007717204000769
   m_TriggerEvent:
-    rid: 7096007717330616320
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7096007717204000769
       type: {class: InstructionLogicRunConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -2147,11 +2063,6 @@ MonoBehaviour:
       type: {class: GetGameObjectConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
         m_Conditions: {fileID: 7107238560961565603}
-    - rid: 7096007717330616320
-      type: {class: EventOnDamageIncreaseCar, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        carController: {fileID: 7686659583069579699}
-        prevDamage: 0
 --- !u!1 &1759537448365698824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,7 +2710,7 @@ MonoBehaviour:
         m_Description: 
         m_ConditionList:
           m_Conditions:
-          - rid: 9205400602406551853
+          - rid: -2
         m_InstructionList:
           m_Instructions:
           - rid: 4490333001826173410
@@ -2812,7 +2723,7 @@ MonoBehaviour:
         m_Description: 
         m_ConditionList:
           m_Conditions:
-          - rid: 9205400602406551855
+          - rid: -2
         m_InstructionList:
           m_Instructions:
           - rid: 4490333001826173620
@@ -2830,24 +2741,6 @@ MonoBehaviour:
       type: {class: GetGameObjectActions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
         m_Actions: {fileID: 5299746641115000838}
-    - rid: 9205400602406551853
-      type: {class: ConditionIsDriving, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 0
-        m_GameObject:
-          m_Property:
-            rid: -2
-    - rid: 9205400602406551855
-      type: {class: ConditionIsDriving, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_Sign: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &2374923657491162118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,28 +2858,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 7096007605350039708
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7096007605350039708
-      type: {class: InstructionRefuel, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
-        fuelAmount:
-          m_Property:
-            rid: -2
-        m_Transition:
-          m_Duration: 50
-          m_Easing: 0
-          m_Time: 0
-          m_WaitToComplete: 0
 --- !u!1 &2702270524340216495
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,20 +4315,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 7096007740971810879
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7096007740971810879
-      type: {class: InstructionCancelRefuel, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &4224192529038609280
 GameObject:
   m_ObjectHideFlags: 0
@@ -6518,20 +6387,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 7096007740971810879
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7096007740971810879
-      type: {class: InstructionCancelRefuel, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &6525480338630272018
 GameObject:
   m_ObjectHideFlags: 0
@@ -6746,7 +6607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 9205400602406551904
+    - rid: -2
   m_TriggerEvent:
     rid: 9205400602406551888
   references:
@@ -6774,14 +6635,6 @@ MonoBehaviour:
       type: {class: InputButtonKeyboardPress, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Key: 19
-    - rid: 9205400602406551904
-      type: {class: InstructionStarLookRight, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!114 &8859982117152059370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6796,7 +6649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 9205400602406551902
+    - rid: -2
   m_TriggerEvent:
     rid: 9205400602406551891
   references:
@@ -6824,14 +6677,6 @@ MonoBehaviour:
       type: {class: InputButtonKeyboardRelease, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Key: 19
-    - rid: 9205400602406551902
-      type: {class: InstructionStopLookRight, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &6860432987219672551
 GameObject:
   m_ObjectHideFlags: 0
@@ -7051,20 +6896,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 7096007740971810877
+    - rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7096007740971810877
-      type: {class: InstructionCancelRefuel, ns: GameCreator.Runtime.VisualScripting, asm: Assembly-CSharp}
-      data:
-        m_Breakpoint: 0
-        m_IsEnabled: 1
-        m_GameObject:
-          m_Property:
-            rid: -2
 --- !u!1 &7370403714709244240
 GameObject:
   m_ObjectHideFlags: 0

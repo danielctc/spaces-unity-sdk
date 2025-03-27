@@ -53,6 +53,10 @@ namespace Spaces.React.Runtime
         public delegate void KeyboardCaptureRequestHandler(KeyboardCaptureRequestData data);
         public static event KeyboardCaptureRequestHandler OnKeyboardCaptureRequest;
 
+        // Add delegate and event for HLSStream
+        public delegate void SetHLSStreamHandler(HLSStreamData data);
+        public static event SetHLSStreamHandler OnReactSetHLSStream;
+
         private void Awake()
         {
             if (Instance == null)
@@ -168,6 +172,13 @@ namespace Spaces.React.Runtime
                     WebGLInput.captureAllKeyboardInput = keyboardCaptureRequestData.captureKeyboard;
                     Debug.Log($"Unity: Set WebGLInput.captureAllKeyboardInput to {keyboardCaptureRequestData.captureKeyboard}");
                     #endif
+                    break;
+
+                // Handle the SetHLSStream event
+                case "SetHLSStream":
+                    Debug.Log("Unity: SetHLSStream received");
+                    HLSStreamData hlsStreamData = JsonUtility.FromJson<HLSStreamData>(eventData);
+                    OnReactSetHLSStream?.Invoke(hlsStreamData);
                     break;
 
                 default:

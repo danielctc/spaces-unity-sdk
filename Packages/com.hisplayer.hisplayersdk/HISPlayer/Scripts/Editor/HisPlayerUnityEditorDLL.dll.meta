@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac5759346d2a54e76bf6f94d18c6efce
+guid: 46de16c1309b24ebabdfdc2729f734f3
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -34,7 +34,7 @@ PluginImporter:
 AssetOrigin:
   serializedVersion: 1
   productId: 283452
-  packageName: WebGL Video Streaming Player
-  packageVersion: Version 3.4.1
+  packageName: Video Streaming Player WebGL
+  packageVersion: 4.7.1
   assetPath: Packages/com.hisplayer.hisplayersdk/HISPlayer/Scripts/Editor/HisPlayerUnityEditorDLL.dll
-  uploadId: 659935
+  uploadId: 741822
