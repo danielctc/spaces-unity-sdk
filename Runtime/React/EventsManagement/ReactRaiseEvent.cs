@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Runtime.InteropServices;
 using Spaces.React.Runtime; 
+using System;
 
 public static class ReactRaiseEvent
 {
@@ -139,6 +140,19 @@ public static class ReactRaiseEvent
         JsSetHLSStream(jsonData);
         #else
         Debug.Log("Not running in WebGL build, JavaScript function not called.");
+        #endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void JsPlacePrefab(string data);
+
+    public static void PlacePrefab(PrefabPlacementData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending PlacePrefab event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsPlacePrefab(jsonData);
         #endif
     }
 }

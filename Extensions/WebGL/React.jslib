@@ -164,4 +164,10 @@ mergeInto(LibraryManager.library, {
     console.log("Unity: Dispatching SetHLSStream event with data:", jsonData);
     window.dispatchReactUnityEvent("SetHLSStream", jsonData);
   },
+
+  JsPlacePrefab: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching PlacePrefab event with data:", jsonData);
+    window.dispatchReactUnityEvent("PlacePrefab", jsonData);
+  }
 });

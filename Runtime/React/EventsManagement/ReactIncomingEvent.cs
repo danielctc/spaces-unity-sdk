@@ -57,6 +57,10 @@ namespace Spaces.React.Runtime
         public delegate void SetHLSStreamHandler(HLSStreamData data);
         public static event SetHLSStreamHandler OnReactSetHLSStream;
 
+        // Add delegate and event for PlacePrefab
+        public delegate void PlacePrefabHandler(PrefabPlacementData data);
+        public static event PlacePrefabHandler OnPlacePrefab;
+
         private void Awake()
         {
             if (Instance == null)
@@ -98,6 +102,12 @@ namespace Spaces.React.Runtime
                     FirebaseUserData firebaseUserData = JsonUtility.FromJson<FirebaseUserData>(eventData);
                     Debug.Log("User: ReactIncomingEvent.cs: React Sent Firebase User Details: " + firebaseUserData.name);
                     OnReceivedFirebaseUser?.Invoke(firebaseUserData);
+                    break;
+
+                case "PlacePrefab":
+                    Debug.Log("Unity: PlacePrefab event received");
+                    PrefabPlacementData prefabData = JsonUtility.FromJson<PrefabPlacementData>(eventData);
+                    OnPlacePrefab?.Invoke(prefabData);
                     break;
 
                 case "HelloFromReact":
