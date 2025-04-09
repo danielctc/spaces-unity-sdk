@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2129080812329938826}
   - component: {fileID: 6790377885255010461}
   - component: {fileID: 5775645763074111561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MediaScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.11}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2129080812329938826
 MeshRenderer:
@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 2129080812329938826}
-  screenId: 
+  screenId: MediaScreen_1

@@ -10,7 +10,7 @@ namespace Spaces.Core.Editor
     public static class SpacesMenuItems
     {
         // Menu path constant
-        public const string MENU_ROOT = "GameObject/Spaces Multiplayer";
+        public const string MENU_ROOT = "GameObject/Spaces";
     }
 }
 #endif 
