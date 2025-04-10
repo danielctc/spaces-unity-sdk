@@ -11,6 +11,9 @@ public class GameObjectIcon : MonoBehaviour
     [SerializeField] private float arrowThickness = 0.1f;  // New parameter for arrow thickness
     [SerializeField] private Color sphereColor = new Color(0f, 1f, 0f, 0.2f); // Semi-transparent green
     [SerializeField] private Color arrowColor = new Color(0f, 0.7f, 1f, 1f);  // Light blue
+    [SerializeField] private float minAlpha = 0.2f; // Minimum visibility when zoomed in
+    [SerializeField] private float maxAlpha = 1.0f; // Maximum visibility when at optimal distance
+    [SerializeField] private float optimalDistance = 5f; // Distance at which visibility is maximum
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -24,37 +27,54 @@ public class GameObjectIcon : MonoBehaviour
         var content = new GUIContent(icon);
         EditorGUIUtility.SetIconForObject(gameObject, icon);
 
+        // Calculate alpha based on camera distance
+        float alpha = CalculateAlpha();
+        Color adjustedArrowColor = new Color(arrowColor.r, arrowColor.g, arrowColor.b, arrowColor.a * alpha);
+
         // Draw Z-axis arrow (always visible)
-        DrawDirectionalArrow();
+        DrawDirectionalArrow(adjustedArrowColor);
     }
 
     private void OnDrawGizmosSelected()
     {
         if (Application.isPlaying) return;
 
+        // Calculate alpha based on camera distance
+        float alpha = CalculateAlpha();
+        Color adjustedSphereColor = new Color(sphereColor.r, sphereColor.g, sphereColor.b, sphereColor.a * alpha);
+
         // Draw rotation sphere only when selected
-        Gizmos.color = sphereColor;
+        Gizmos.color = adjustedSphereColor;
         Gizmos.DrawWireSphere(transform.position, sphereRadius);
         
         // Draw circles to represent rotation
-        DrawRotationCircles();
+        DrawRotationCircles(adjustedSphereColor);
     }
 
-    private void DrawRotationCircles()
+    private float CalculateAlpha()
+    {
+        if (Camera.current == null) return maxAlpha;
+
+        float distance = Vector3.Distance(Camera.current.transform.position, transform.position);
+        float alpha = Mathf.Lerp(minAlpha, maxAlpha, distance / optimalDistance);
+        return Mathf.Clamp(alpha, minAlpha, maxAlpha);
+    }
+
+    private void DrawRotationCircles(Color color)
     {
         // Draw three circles to represent rotation in different axes
         int segments = 32;
         Vector3 center = transform.position;
 
         // Draw circles in all three axes
-        DrawCircle(center, transform.right, transform.up, segments, sphereRadius);
-        DrawCircle(center, transform.up, transform.forward, segments, sphereRadius);
-        DrawCircle(center, transform.forward, transform.right, segments, sphereRadius);
+        DrawCircle(center, transform.right, transform.up, segments, sphereRadius, color);
+        DrawCircle(center, transform.up, transform.forward, segments, sphereRadius, color);
+        DrawCircle(center, transform.forward, transform.right, segments, sphereRadius, color);
     }
 
-    private void DrawCircle(Vector3 center, Vector3 normal, Vector3 forward, int segments, float radius)
+    private void DrawCircle(Vector3 center, Vector3 normal, Vector3 forward, int segments, float radius, Color color)
     {
-        Gizmos.color = sphereColor;
+        Gizmos.color = color;
         float angleStep = 360f / segments;
         
         for (int i = 0; i < segments; i++)
@@ -69,9 +89,9 @@ public class GameObjectIcon : MonoBehaviour
         }
     }
 
-    private void DrawDirectionalArrow()
+    private void DrawDirectionalArrow(Color color)
     {
-        Gizmos.color = arrowColor;
+        Gizmos.color = color;
         Vector3 start = transform.position;
         Vector3 end = start + transform.forward * arrowLength;
         
