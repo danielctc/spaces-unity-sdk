@@ -854,6 +854,50 @@ Transform:
   - {fileID: 2451396484077311503}
   m_Father: {fileID: 3627811836790460907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1374545506380775134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6561806528259272932}
+  - component: {fileID: 2304664211756986918}
+  m_Layer: 0
+  m_Name: Moderation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6561806528259272932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374545506380775134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1898972847758306715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2304664211756986918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374545506380775134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f8b7bfe2ac24df1bd1327c6c57c67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1543669281843693291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3802,7 @@ Transform:
   - {fileID: 5919666042852215155}
   - {fileID: 1964474792558900411}
   - {fileID: 690932080915695926}
+  - {fileID: 6561806528259272932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8471954932436099644
@@ -3996,6 +4041,7 @@ MonoBehaviour:
   - {fileID: 8373744573085727862}
   - {fileID: 4810863290156369730}
   - {fileID: 5917856845755894119}
+  - {fileID: 2304664211756986918}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &6370522755723172216
 MonoBehaviour:

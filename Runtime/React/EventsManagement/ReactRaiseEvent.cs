@@ -155,4 +155,27 @@ public static class ReactRaiseEvent
         JsPlacePrefab(jsonData);
         #endif
     }
+
+    [DllImport("__Internal")]
+    private static extern void JsKickPlayerResult(string jsonData);
+
+    public static void SendKickPlayerResult(bool success, string playerName, string playerUid, string errorMessage = "")
+    {
+        KickPlayerResultData resultData = new KickPlayerResultData
+        {
+            success = success,
+            playerName = playerName,
+            playerUid = playerUid,
+            errorMessage = errorMessage
+        };
+        
+        string jsonData = JsonUtility.ToJson(resultData);
+        Debug.Log($"Unity: Sending KickPlayerResult event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsKickPlayerResult(jsonData);
+        #else
+        Debug.Log("Not running in WebGL build, JavaScript function not called.");
+        #endif
+    }
 }

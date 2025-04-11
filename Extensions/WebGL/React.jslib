@@ -169,5 +169,19 @@ mergeInto(LibraryManager.library, {
     var jsonData = UTF8ToString(objectPointer);
     console.log("Unity: Dispatching PlacePrefab event with data:", jsonData);
     window.dispatchReactUnityEvent("PlacePrefab", jsonData);
+  },
+
+  // New function for kick player requests and results
+  JsKickPlayerResult: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching KickPlayerResult event with data:", jsonData);
+    window.dispatchReactUnityEvent("KickPlayerResult", jsonData);
+  },
+
+  // Add this function to ensure we have a complete implementation
+  JsKickPlayer: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching KickPlayer event with data:", jsonData);
+    window.dispatchReactUnityEvent("KickPlayer", jsonData);
   }
 });

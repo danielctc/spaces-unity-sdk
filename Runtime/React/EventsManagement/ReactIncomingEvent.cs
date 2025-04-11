@@ -61,6 +61,10 @@ namespace Spaces.React.Runtime
         public delegate void PlacePrefabHandler(PrefabPlacementData data);
         public static event PlacePrefabHandler OnPlacePrefab;
 
+        // Add delegate and event for KickPlayer
+        public delegate void KickPlayerHandler(KickPlayerData data);
+        public static event KickPlayerHandler OnReactKickPlayer;
+
         private void Awake()
         {
             if (Instance == null)
@@ -189,6 +193,13 @@ namespace Spaces.React.Runtime
                     Debug.Log("Unity: SetHLSStream received");
                     HLSStreamData hlsStreamData = JsonUtility.FromJson<HLSStreamData>(eventData);
                     OnReactSetHLSStream?.Invoke(hlsStreamData);
+                    break;
+
+                // Handle the KickPlayer event
+                case "KickPlayer":
+                    Debug.Log("Unity: KickPlayer event received");
+                    KickPlayerData kickPlayerData = JsonUtility.FromJson<KickPlayerData>(eventData);
+                    OnReactKickPlayer?.Invoke(kickPlayerData);
                     break;
 
                 default:
