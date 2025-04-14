@@ -2573,10 +2573,11 @@ GameObject:
   - component: {fileID: 2244140482442294675}
   - component: {fileID: 4777726287406616725}
   - component: {fileID: 844535848446377832}
+  - component: {fileID: 8428987600354448047}
   m_Layer: 0
   m_Name: LiveProjector
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 15526ae9cc9974e24a072ef4c8fb409d, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2675,6 +2676,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8428987600354448047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111047876870530402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4f0d30bba2f48b8bde9360e8fba623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 15526ae9cc9974e24a072ef4c8fb409d, type: 3}
+  offset: {x: 0, y: 0, z: 0}
+  sphereRadius: 0.5
+  arrowLength: 1
+  arrowThickness: 0.1
+  sphereColor: {r: 0, g: 1, b: 0, a: 0.2}
+  arrowColor: {r: 0, g: 0.7, b: 1, a: 1}
+  minAlpha: 0.2
+  maxAlpha: 1
+  optimalDistance: 5
 --- !u!1 &5273531989815320267
 GameObject:
   m_ObjectHideFlags: 0

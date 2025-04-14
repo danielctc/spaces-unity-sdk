@@ -591,6 +591,25 @@ MonoBehaviour:
       type: {class: GetGameObjectInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_GameObject: {fileID: 8215863462839073484}
+    - rid: 4958877929036841044
+      type: {class: InstructionGameObjectSetActive, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 0
+        m_GameObject:
+          m_Property:
+            rid: 4958877929036841045
+        m_Active:
+          m_Property:
+            rid: 4958877929036841046
+    - rid: 4958877929036841045
+      type: {class: GetGameObjectInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_GameObject: {fileID: 8215863462839073484}
+    - rid: 4958877929036841046
+      type: {class: GetBoolValue, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Value: 0
     - rid: 5243232770371354683
       type: {class: GetDecimalConstantZero, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data: 
@@ -646,6 +665,7 @@ MonoBehaviour:
           - rid: 4958877807174746264
           - rid: 4958877807174746386
           - rid: 4776500778982965403
+          - rid: 4958877929036841044
           - rid: 4958877807174746433
           - rid: 4958877807174746406
     - rid: 8945157204930199621
@@ -687,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2295574416
+  SortKey: 421423458
   ObjectInterest: 1
   Flags: 131073
   NestedObjects: []
@@ -1153,7 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 2690040614
+  SortKey: 815889656
   ObjectInterest: 1
   Flags: 131073
   NestedObjects: []
@@ -1210,7 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target:
     m_Property:
-      rid: 4958877807174746253
+      rid: 4958877929036841042
   m_Mode: 1
   m_Radius:
     m_Property:
@@ -1227,9 +1247,6 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 10
-    - rid: 4958877807174746253
-      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 4958877807174746254
       type: {class: SpotLook, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
@@ -1292,6 +1309,15 @@ MonoBehaviour:
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Value: 1.3
+    - rid: 4958877929036841042
+      type: {class: GetGameObjectRPCSender, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data:
+        fallbackTo:
+          m_Property:
+            rid: 4958877929036841043
+    - rid: 4958877929036841043
+      type: {class: GetGameObjectLocalPlayer, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data: 
 --- !u!114 &5579086541786928666
 MonoBehaviour:
   m_ObjectHideFlags: 0
