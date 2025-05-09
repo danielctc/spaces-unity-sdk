@@ -65,6 +65,22 @@ namespace Spaces.React.Runtime
         public delegate void KickPlayerHandler(KickPlayerData data);
         public static event KickPlayerHandler OnReactKickPlayer;
 
+        // Add delegate and event for Portal
+        public delegate void PortalHandler(PortalData data);
+        public static event PortalHandler OnReactPortal;
+
+        // Add delegate and event for SetPortalImage
+        public delegate void SetPortalImageHandler(PortalData data);
+        public static event SetPortalImageHandler OnSetPortalImage;
+
+        // New delegate and event for Portal Prefab Placement
+        public delegate void PlacePortalPrefabHandler(PortalPrefabPlacementData data);
+        public static event PlacePortalPrefabHandler OnPlacePortalPrefab;
+
+        // New delegate and event for Portal Transform Updates
+        public delegate void UpdatePortalTransformHandler(PortalTransformData data);
+        public static event UpdatePortalTransformHandler OnUpdatePortalTransform;
+
         private void Awake()
         {
             if (Instance == null)
@@ -93,12 +109,40 @@ namespace Spaces.React.Runtime
         }
 
         // This function will be directly invoked from JavaScript
-        public void HandleEvent(string combinedData)
+        public void HandleEvent(string eventData)
         {
-            CombinedEventData combinedEventData = JsonUtility.FromJson<CombinedEventData>(combinedData);
+            try
+            {
+                Debug.Log($"[ReactIncomingEvent] Received event data: {eventData}");
+                
+                // Try to parse as combined event first
+                try
+                {
+                    CombinedEventData combinedEventData = JsonUtility.FromJson<CombinedEventData>(eventData);
+                    if (combinedEventData != null && !string.IsNullOrEmpty(combinedEventData.eventName))
+                    {
+                        Debug.Log($"[ReactIncomingEvent] Parsed as combined event: {combinedEventData.eventName}");
+                        ProcessEvent(combinedEventData.eventName, combinedEventData.data);
+                        return;
+                    }
+                }
+                catch
+                {
+                    // Not a combined event, continue with direct event handling
+                }
 
-            string eventName = combinedEventData.eventName;
-            string eventData = combinedEventData.data;
+                // Handle as direct event
+                ProcessEvent("SetPortalImage", eventData);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[ReactIncomingEvent] Error processing event data: {e.Message}\nData: {eventData}");
+            }
+        }
+
+        private void ProcessEvent(string eventName, string eventData)
+        {
+            Debug.Log($"[ReactIncomingEvent] Processing event: {eventName} with data: {eventData}");
 
             switch (eventName)
             {
@@ -145,6 +189,20 @@ namespace Spaces.React.Runtime
                     Debug.Log("Unity: MediaScreen event received");
                     MediaScreenData mediaScreenData = JsonUtility.FromJson<MediaScreenData>(eventData);
                     OnReactMediaScreen?.Invoke(mediaScreenData);
+                    break;
+                    
+                // Handle the Portal event
+                case "Portal":
+                    Debug.Log("Unity: Portal event received");
+                    PortalData portalData = JsonUtility.FromJson<PortalData>(eventData);
+                    OnReactPortal?.Invoke(portalData);
+                    break;
+                    
+                // Handle the SetPortalImage event
+                case "SetPortalImage":
+                    Debug.Log("Unity: SetPortalImage event received");
+                    PortalData setPortalImageData = JsonUtility.FromJson<PortalData>(eventData);
+                    OnSetPortalImage?.Invoke(setPortalImageData);
                     break;
                     
                 // Handle the SetMediaScreenImage event
@@ -202,8 +260,22 @@ namespace Spaces.React.Runtime
                     OnReactKickPlayer?.Invoke(kickPlayerData);
                     break;
 
+                // Handle the new PlacePortalPrefab event
+                case "PlacePortalPrefab":
+                    Debug.Log("Unity: PlacePortalPrefab event received");
+                    PortalPrefabPlacementData portalPrefabData = JsonUtility.FromJson<PortalPrefabPlacementData>(eventData);
+                    OnPlacePortalPrefab?.Invoke(portalPrefabData);
+                    break;
+
+                // Handle the UpdatePortalTransform event
+                case "UpdatePortalTransform":
+                    Debug.Log("Unity: UpdatePortalTransform event received");
+                    PortalTransformData transformData = JsonUtility.FromJson<PortalTransformData>(eventData);
+                    OnUpdatePortalTransform?.Invoke(transformData);
+                    break;
+
                 default:
-                    Debug.LogWarning("Unknown event: " + eventName);
+                    Debug.LogWarning($"Unknown event: {eventName}");
                     break;
             }
         }

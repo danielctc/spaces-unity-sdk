@@ -13,6 +13,8 @@ namespace Spaces.Fusion.Runtime // Added namespace
         [Header("References")]
         [Tooltip("Assign the parent GameObject holding the World Space Canvas and Text element.")]
         [SerializeField] private GameObject promptCanvasHolder;
+        [Tooltip("Assign a separate GameObject used for the hover glow effect.")]
+        [SerializeField] private GameObject glowObject; // Added glow object reference
 
         private TextMeshProUGUI promptTextComponent;
         private bool isHovering = false; // Track hover state
@@ -36,6 +38,16 @@ namespace Spaces.Fusion.Runtime // Added namespace
             {
                 Debug.LogError("HoverPrompt: 'Prompt Canvas Holder' is not assigned in the Inspector!", this);
             }
+
+            // Ensure the glow object is assigned and starts hidden
+            if (glowObject != null)
+            {
+                glowObject.SetActive(false);
+            }
+            else
+            {
+                 Debug.LogWarning("HoverPrompt: 'Glow Object' is not assigned in the Inspector. Glow effect will not work.", this);
+            }
         }
 
         // Called by the EventSystem when the mouse pointer enters the object's Collider bounds
@@ -43,6 +55,11 @@ namespace Spaces.Fusion.Runtime // Added namespace
         {
             isHovering = true;
             ShowPrompt();
+            // Activate the glow object
+            if (glowObject != null)
+            {
+                glowObject.SetActive(true);
+            }
         }
 
         // Called by the EventSystem when the mouse pointer exits the object's Collider bounds
@@ -50,20 +67,37 @@ namespace Spaces.Fusion.Runtime // Added namespace
         {
             isHovering = false;
             HidePrompt();
+            // Deactivate the glow object
+            if (glowObject != null)
+            {
+                glowObject.SetActive(false);
+            }
         }
 
-        // Also hide the prompt if this object gets disabled while hovering
+        // Also hide the prompt and glow if this object gets disabled while hovering
         void OnDisable()
         {
             if (isHovering)
             {
                HidePrompt();
+               // Deactivate the glow object
+               if (glowObject != null)
+               {
+                   glowObject.SetActive(false);
+               }
                isHovering = false; // Reset hover state
             }
-             // Ensure prompt is hidden if object is disabled for other reasons too
-             else if (promptCanvasHolder != null && promptCanvasHolder.activeSelf)
+             // Ensure prompt and glow are hidden if object is disabled for other reasons too
+             else
              {
-                 HidePrompt();
+                 if (promptCanvasHolder != null && promptCanvasHolder.activeSelf)
+                 {
+                     HidePrompt();
+                 }
+                 if (glowObject != null && glowObject.activeSelf)
+                 {
+                     glowObject.SetActive(false);
+                 }
              }
         }
 

@@ -178,4 +178,49 @@ public static class ReactRaiseEvent
         Debug.Log("Not running in WebGL build, JavaScript function not called.");
         #endif
     }
+
+    [DllImport("__Internal")]
+    private static extern void JsPlacePortalPrefab(string data);
+
+    public static void PlacePortalPrefab(PortalPrefabPlacementData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending PlacePortalPrefab event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsPlacePortalPrefab(jsonData);
+        #else
+        Debug.Log("[PlacePortalPrefab] Would send to React: " + jsonData);
+        #endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void JsPortalClicked(string data);
+
+    public static void PortalClicked(PortalClickData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending PortalClicked event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsPortalClicked(jsonData);
+        #else
+        Debug.Log("[PortalClicked] Would send to React: " + jsonData);
+        #endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void JsSetPortalImage(string data);
+
+    public static void SetPortalImage(PortalData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending SetPortalImage event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsSetPortalImage(jsonData);
+        #else
+        Debug.Log("[SetPortalImage] Would send to React: " + jsonData);
+        #endif
+    }
 }

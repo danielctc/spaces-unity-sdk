@@ -58,6 +58,20 @@ mergeInto(LibraryManager.library, {
     window.dispatchReactUnityEvent("UpdatePlayerList", jsonData);
   },
 
+  // New function for registering a Portal
+  JsRegisterPortal: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching RegisterPortal event with data:", jsonData);
+    window.dispatchReactUnityEvent("RegisterPortal", jsonData);
+  },
+
+  // New function for sending Portal clicks
+  JsSendPortalClick: function (objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching PortalClick event with data:", jsonData);
+    window.dispatchReactUnityEvent("PortalClick", jsonData);
+  },
+
   // New function for registering a MediaScreen
   JsRegisterMediaScreen: function (objectPointer) {
     var jsonData = UTF8ToString(objectPointer);
@@ -183,5 +197,35 @@ mergeInto(LibraryManager.library, {
     var jsonData = UTF8ToString(objectPointer);
     console.log("Unity: Dispatching KickPlayer event with data:", jsonData);
     window.dispatchReactUnityEvent("KickPlayer", jsonData);
+  },
+
+  // New function for Portal Clicked event
+  JsPortalClicked: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching PortalClicked event with data:", jsonData);
+    window.dispatchReactUnityEvent("PortalClicked", jsonData);
+  },
+
+  // New function for updating portal transforms
+  JsUpdatePortalTransform: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching UpdatePortalTransform event with data:", jsonData);
+    window.dispatchReactUnityEvent("UpdatePortalTransform", jsonData);
+  },
+
+  // New function for placing Portal prefabs
+  JsPlacePortalPrefab: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching PlacePortalPrefab event with data:", jsonData);
+    window.dispatchReactUnityEvent("PlacePortalPrefab", jsonData);
+  },
+
+  // New function for setting portal images
+  JsSetPortalImage: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching SetPortalImage event with data:", jsonData);
+    
+    // Send directly to Unity using the event system
+    window.dispatchReactUnityEvent("SetPortalImage", jsonData);
   }
 });
