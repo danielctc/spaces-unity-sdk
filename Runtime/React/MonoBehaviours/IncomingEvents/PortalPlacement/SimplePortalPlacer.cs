@@ -45,8 +45,8 @@ namespace Spaces.React.Runtime
             PortalManager portalManager = instance.GetComponent<PortalManager>();
             if (portalManager != null)
             {
-                // Set the portalId from React
-                portalManager.portalId = data.portalId;
+                // Set the portalId using the new method
+                portalManager.SetPortalId(data.portalId);
                 Debug.Log($"[SimplePortalPlacer] Set portal ID to: {data.portalId}");
                 
                 // Ensure the portal is properly set up

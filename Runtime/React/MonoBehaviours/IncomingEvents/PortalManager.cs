@@ -25,6 +25,7 @@ namespace Spaces.React.Runtime
         
         // Track active coroutines for cancellation
         private Coroutine activeImageLoadCoroutine = null;
+        private bool isRegistered = false;
 
         private void Awake()
         {
@@ -75,24 +76,16 @@ namespace Spaces.React.Runtime
         {
             Debug.Log($"[PortalManager] OnEnable called for portal {portalId}");
             
-            // Register this portal instance in the static dictionary
-            if (!string.IsNullOrEmpty(portalId))
-            {
-                if (portalInstances.ContainsKey(portalId))
-                {
-                    Debug.LogWarning($"[PortalManager] Portal ID {portalId} already exists! Overwriting previous instance.");
-                }
-                portalInstances[portalId] = this;
-                Debug.Log($"[PortalManager] Registered portal {portalId} in portal dictionary");
-            }
-            
             // Subscribe to events
             ReactIncomingEvent.OnReactPortal += HandlePortal;
             ReactIncomingEvent.OnSetPortalImage += HandlePortal;
             ReactIncomingEvent.OnUpdatePortalTransform += HandleTransformUpdate;
             
-            // Register this Portal with React
-            RegisterWithReact();
+            // Only register if we have a portalId
+            if (!string.IsNullOrEmpty(portalId))
+            {
+                RegisterWithReact();
+            }
         }
 
         private void OnDisable()
@@ -115,6 +108,32 @@ namespace Spaces.React.Runtime
                 StopCoroutine(activeImageLoadCoroutine);
                 activeImageLoadCoroutine = null;
             }
+        }
+
+        // Public method to set the portal ID and register with React
+        public void SetPortalId(string newPortalId)
+        {
+            if (string.IsNullOrEmpty(newPortalId))
+            {
+                Debug.LogError("[PortalManager] Cannot set empty portalId!");
+                return;
+            }
+
+            // If we already have a portalId, unregister the old one
+            if (!string.IsNullOrEmpty(portalId) && portalInstances.ContainsKey(portalId))
+            {
+                portalInstances.Remove(portalId);
+            }
+
+            portalId = newPortalId;
+            Debug.Log($"[PortalManager] Set portal ID to: {portalId}");
+
+            // Register this portal instance in the static dictionary
+            portalInstances[portalId] = this;
+            Debug.Log($"[PortalManager] Registered portal {portalId} in portal dictionary");
+
+            // Register with React
+            RegisterWithReact();
         }
 
         // Static method to find a portal by ID
@@ -148,6 +167,7 @@ namespace Spaces.React.Runtime
 
             Debug.Log($"[PortalManager] Registering Portal {portalId} with React: Position={transform.position}, HasImage={hasImage}, ImageUrl={currentImageUrl}");
             PortalRegistration.RegisterPortal(data);
+            isRegistered = true;
         }
 
         private void HandlePortal(PortalData data)
@@ -201,12 +221,10 @@ namespace Spaces.React.Runtime
             
             using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(urlToLoad))
             {
-                if (forceRefresh)
-                {
-                    uwr.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                    uwr.SetRequestHeader("Pragma", "no-cache");
-                    uwr.SetRequestHeader("Expires", "0");
-                }
+                // Remove problematic headers that cause CORS issues
+                // uwr.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                // uwr.SetRequestHeader("Pragma", "no-cache");
+                // uwr.SetRequestHeader("Expires", "0");
                 
                 yield return uwr.SendWebRequest();
 

@@ -122,13 +122,23 @@ namespace Spaces.React.Runtime
                     if (combinedEventData != null && !string.IsNullOrEmpty(combinedEventData.eventName))
                     {
                         Debug.Log($"[ReactIncomingEvent] Parsed as combined event: {combinedEventData.eventName}");
-                        ProcessEvent(combinedEventData.eventName, combinedEventData.data);
+                        
+                        // Handle double-encoded JSON data
+                        string decodedData = combinedEventData.data;
+                        if (decodedData.StartsWith("\"") && decodedData.EndsWith("\""))
+                        {
+                            decodedData = decodedData.Substring(1, decodedData.Length - 2)
+                                                    .Replace("\\\"", "\"")
+                                                    .Replace("\\\\", "\\");
+                        }
+                        
+                        ProcessEvent(combinedEventData.eventName, decodedData);
                         return;
                     }
                 }
-                catch
+                catch (System.Exception e)
                 {
-                    // Not a combined event, continue with direct event handling
+                    Debug.LogWarning($"[ReactIncomingEvent] Failed to parse as combined event: {e.Message}");
                 }
 
                 // Handle as direct event
@@ -202,6 +212,11 @@ namespace Spaces.React.Runtime
                 case "SetPortalImage":
                     Debug.Log("Unity: SetPortalImage event received");
                     PortalData setPortalImageData = JsonUtility.FromJson<PortalData>(eventData);
+                    if (string.IsNullOrEmpty(setPortalImageData.portalId))
+                    {
+                        Debug.LogError("[ReactIncomingEvent] Received SetPortalImage event with empty portalId!");
+                        return;
+                    }
                     OnSetPortalImage?.Invoke(setPortalImageData);
                     break;
                     
