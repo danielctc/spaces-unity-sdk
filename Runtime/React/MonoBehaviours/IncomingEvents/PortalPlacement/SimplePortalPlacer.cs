@@ -49,6 +49,13 @@ namespace Spaces.React.Runtime
                 portalManager.SetPortalId(data.portalId);
                 Debug.Log($"[SimplePortalPlacer] Set portal ID to: {data.portalId}");
                 
+                // If we have an initial image URL, set it immediately
+                if (!string.IsNullOrEmpty(data.initialImageUrl))
+                {
+                    Debug.Log($"[SimplePortalPlacer] Setting initial image for portal {data.portalId}: {data.initialImageUrl}");
+                    portalManager.SetImage(data.initialImageUrl);
+                }
+                
                 // Ensure the portal is properly set up
                 if (portalManager.targetRenderer == null)
                 {

@@ -219,43 +219,50 @@ namespace Spaces.React.Runtime
             
             Debug.Log($"[PortalManager] Loading image for Portal {portalId} from URL: {urlToLoad}");
             
-            using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(urlToLoad))
+            using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(urlToLoad))
             {
-                // Remove problematic headers that cause CORS issues
-                // uwr.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                // uwr.SetRequestHeader("Pragma", "no-cache");
-                // uwr.SetRequestHeader("Expires", "0");
-                
-                yield return uwr.SendWebRequest();
+                yield return www.SendWebRequest();
 
-                if (uwr.result == UnityWebRequest.Result.Success)
+                if (www.result == UnityWebRequest.Result.Success)
                 {
-                    Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
-                    Debug.Log($"[PortalManager] Successfully downloaded texture for Portal {portalId}");
-
-                    if (targetRenderer != null)
+                    Texture2D texture = DownloadHandlerTexture.GetContent(www);
+                    
+                    // Get or create material with our custom shader
+                    if (targetRenderer.material == null)
                     {
-                        if (targetRenderer.material == null)
-                        {
-                            targetRenderer.material = new Material(Shader.Find("Standard"));
-                            Debug.Log($"[PortalManager] Created new Standard material for Portal {portalId}");
-                        }
+                        targetRenderer.material = new Material(Shader.Find("Custom/BillboardPortal"));
+                        Debug.Log($"[PortalManager] Created new BillboardPortal material for Portal {portalId}");
+                    }
+                    else if (targetRenderer.material.shader.name != "Custom/BillboardPortal")
+                    {
+                        // If material exists but has wrong shader, create new one
+                        Material newMaterial = new Material(Shader.Find("Custom/BillboardPortal"));
+                        // Copy any existing properties
+                        if (targetRenderer.material.HasProperty("_MainTex"))
+                            newMaterial.mainTexture = targetRenderer.material.mainTexture;
+                        if (targetRenderer.material.HasProperty("_EmissionColor"))
+                            newMaterial.SetColor("_EmissionColor", targetRenderer.material.GetColor("_EmissionColor"));
+                        if (targetRenderer.material.HasProperty("_GlowColor"))
+                            newMaterial.SetColor("_GlowColor", targetRenderer.material.GetColor("_GlowColor"));
+                        if (targetRenderer.material.HasProperty("_GlowPower"))
+                            newMaterial.SetFloat("_GlowPower", targetRenderer.material.GetFloat("_GlowPower"));
+                        if (targetRenderer.material.HasProperty("_GlowScale"))
+                            newMaterial.SetFloat("_GlowScale", targetRenderer.material.GetFloat("_GlowScale"));
                         
-                        targetRenderer.material.mainTexture = texture;
-                        hasImage = true;
-                        Debug.Log($"[PortalManager] Successfully applied texture to Portal {portalId}");
+                        targetRenderer.material = newMaterial;
+                        Debug.Log($"[PortalManager] Updated material to use BillboardPortal shader for Portal {portalId}");
                     }
-                    else
-                    {
-                        Debug.LogError($"[PortalManager] Portal {portalId} has no target renderer assigned!");
-                    }
+
+                    // Apply the texture
+                    targetRenderer.material.mainTexture = texture;
+                    hasImage = true;
+
+                    Debug.Log($"Successfully applied texture to portal material");
                 }
                 else
                 {
-                    Debug.LogError($"[PortalManager] Failed to download image for Portal {portalId}: {uwr.error}");
+                    Debug.LogError($"Failed to load image: {www.error}");
                 }
-                
-                activeImageLoadCoroutine = null;
             }
         }
         

@@ -7,16 +7,16 @@ namespace Spaces.React.Runtime
     public class PortalClickData
     {
         public string portalId;
-        public Vector3 position; // Changed from string to Vector3
-        public Vector3 rotation; // Added rotation
-        public Vector3 scale;    // Added scale
+        public Vector3 position;
+        public Vector3 rotation;
+        public Vector3 scale;
     }
 
     public class PortalClick
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         [DllImport("__Internal")]
-        private static extern void JsPortalClicked(string portalClickDataJson); // Changed function name
+        private static extern void JsPortalClicked(string portalClickDataJson);
 #endif
 
         public static void SendPortalClick(PortalClickData data)
@@ -25,7 +25,7 @@ namespace Spaces.React.Runtime
             Debug.Log($"[PortalClick] Sending Portal Clicked event: {jsonData}");
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-            JsPortalClicked(jsonData); // Changed function call
+            JsPortalClicked(jsonData);
 #else
             Debug.Log("[PortalClick] Running in editor, skipping JS call.");
 #endif

@@ -2747,6 +2747,97 @@ Transform:
   - {fileID: 1947501426679175532}
   m_Father: {fileID: 2451396484077311503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3978582885401612443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2629475826873816703}
+  - component: {fileID: 5729476723638499166}
+  m_Layer: 0
+  m_Name: Conditions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2629475826873816703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978582885401612443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 732455748454385199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5729476723638499166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978582885401612443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721fb82976bce47f38247178301b66c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Branches:
+    m_Branches:
+    - rid: 1962886972860007095
+  references:
+    version: 2
+    RefIds:
+    - rid: 1962886972860007095
+      type: {class: Branch, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Description: 
+        m_ConditionList:
+          m_Conditions: []
+        m_InstructionList:
+          m_Instructions:
+          - rid: 1962886972860007122
+    - rid: 1962886972860007122
+      type: {class: InstructionCharacterNavigationTeleport, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Character:
+          m_Property:
+            rid: 1962886972860007263
+        m_Location:
+          m_Property:
+            rid: 1962886972860007180
+    - rid: 1962886972860007180
+      type: {class: GetLocationPositionRotation, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data:
+        m_Position:
+          m_Property:
+            rid: 1962886972860007209
+        m_Rotation:
+          m_Property:
+            rid: 1962886972860007236
+    - rid: 1962886972860007209
+      type: {class: GetPositionVectorZero, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 1962886972860007236
+      type: {class: GetRotationRandomEulerY, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data: 
+    - rid: 1962886972860007263
+      type: {class: GetGameObjectCharactersInstance, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data:
+        m_Character: {fileID: 8471954932436099644}
 --- !u!1 &4368399262811435763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,6 +3030,84 @@ Transform:
   - {fileID: 6411125440404109382}
   m_Father: {fileID: 9032692101678034369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5115063180457564487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732455748454385199}
+  - component: {fileID: 1259502579125924598}
+  m_Layer: 0
+  m_Name: Respawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &732455748454385199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115063180457564487}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3654395, y: 0.6320742, z: -0.44666243, w: 0.51713526}
+  m_LocalPosition: {x: -0.0000502225, y: -0.13882811, z: 0.052294705}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2629475826873816703}
+  m_Father: {fileID: 1898972847758306715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259502579125924598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115063180457564487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecd922218e245e2b85d51f9f08338c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Instructions:
+    m_Instructions:
+    - rid: 1962886978915533171
+  m_TriggerEvent:
+    rid: 1962886978915533090
+  references:
+    version: 2
+    RefIds:
+    - rid: 1962886978915533090
+      type: {class: EventCharacterOnFallingBelowFloor, ns: GameCreator.Runtime.VisualScripting, asm: Spaces.Core.Runtime}
+      data:
+        m_Character:
+          m_Property:
+            rid: 1962886978915533118
+        floorYThreshold: -10
+        fallDurationThreshold: 3
+    - rid: 1962886978915533118
+      type: {class: GetGameObjectCharactersInstance, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
+      data:
+        m_Character: {fileID: 8471954932436099644}
+    - rid: 1962886978915533171
+      type: {class: InstructionLogicRunConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Breakpoint: 0
+        m_IsEnabled: 1
+        m_Conditions:
+          m_Property:
+            rid: 1962886978915533172
+        m_WaitToFinish: 0
+    - rid: 1962886978915533172
+      type: {class: GetGameObjectConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+      data:
+        m_Conditions: {fileID: 5729476723638499166}
 --- !u!1 &5136578234334829943
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,7 +3942,6 @@ GameObject:
   - component: {fileID: 6857954337103985145}
   - component: {fileID: 6370522755723172216}
   - component: {fileID: 8373744573085727862}
-  - component: {fileID: 1276194727594953696}
   - component: {fileID: 4810863290156369730}
   m_Layer: 0
   m_Name: Spaces_Multiplayer
@@ -3803,6 +3971,7 @@ Transform:
   - {fileID: 1964474792558900411}
   - {fileID: 690932080915695926}
   - {fileID: 6561806528259272932}
+  - {fileID: 732455748454385199}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8471954932436099644
@@ -4073,20 +4242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarUrlUpdater: {fileID: 5917856845755894119}
---- !u!114 &1276194727594953696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6838992735190151648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6731a19f89d45439ca72ae74ae44f077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: 0
-  lightningEffectPrefab: {fileID: 6735239426161100857, guid: f854a20977a124813a1af0c3a8db4aec, type: 3}
 --- !u!114 &4810863290156369730
 MonoBehaviour:
   m_ObjectHideFlags: 0

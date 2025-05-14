@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 5438198186338021319}
   - component: {fileID: 5773959770101761796}
   - component: {fileID: 4457884276670591370}
+  - component: {fileID: 1216760788891184105}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -191,7 +192,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a6820ebe0a5ad4e2887588a6e422208c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverSpeed: 1
-  hoverHeight: 0.5
+  hoverHeight: 0.1
 --- !u!114 &4457884276670591370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,3 +264,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 2562325780553733695}
   portalId: 
+--- !u!114 &1216760788891184105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107097533362244174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9b7bc66d357459b933b53433726c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  lockYAxis: 1
+  rotationSpeed: 4
