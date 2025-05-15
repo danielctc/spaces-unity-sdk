@@ -9,6 +9,9 @@ namespace Spaces.Core.Editor
 {
     public class InterestPointComponent
     {
+        public string prettyName => "Interest Point";
+        public string tooltip => "Creates an interactive information panel that displays text and images in 3D space";
+
         private const string PREFAB_PATH = "Assets/SpacesSDK/Runtime/Assets/Prefabs/Components/InterestPoint.prefab";
         private const string INTEREST_POINT_TYPE_NAME = "Spaces.React.Runtime.InterestPoint";
         

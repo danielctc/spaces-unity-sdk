@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5043144593803316681}
+  - component: {fileID: 5775645763074111561}
   - component: {fileID: 2662471120709071804}
   - component: {fileID: 2129080812329938826}
   - component: {fileID: 6790377885255010461}
-  - component: {fileID: 5775645763074111561}
   - component: {fileID: -9201017710497725952}
   m_Layer: 6
   m_Name: MediaScreen
@@ -36,6 +36,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5775645763074111561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322918475756106091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbd00e1f0cc34e8ea609f86f5a63c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRenderer: {fileID: 2129080812329938826}
+  screenId: MediaScreen_1
 --- !u!65 &2662471120709071804
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,20 +124,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8322918475756106091}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5775645763074111561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8322918475756106091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccbd00e1f0cc34e8ea609f86f5a63c05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRenderer: {fileID: 2129080812329938826}
-  screenId: MediaScreen_1
 --- !u!114 &-9201017710497725952
 MonoBehaviour:
   m_ObjectHideFlags: 0
