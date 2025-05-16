@@ -9,6 +9,7 @@
     "changelogUrl": "https://www.spacesmetaverse.com",
     "licensesUrl": "https://www.spacesmetaverse.com",
     "dependencies": {
+        "com.photon.fusion": "2.0.0"
     },
     "keywords": [
       "spaces",

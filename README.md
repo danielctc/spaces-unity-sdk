@@ -1,5 +1,12 @@
 # spaces-unity-sdk
 
+## Prerequisites
+
+This SDK requires the following dependencies:
+- Photon Fusion (com.photon.fusion) version 2.0.0 or compatible
+
+Make sure to install these dependencies through the Unity Package Manager before using the SDK.
+
 ## HLS Streaming Support
 
 The Spaces SDK includes robust support for HLS streaming from React to Unity using the HISPlayer video player. The implementation includes multiple fallback mechanisms to ensure compatibility with different versions of the HISPlayer SDK.
