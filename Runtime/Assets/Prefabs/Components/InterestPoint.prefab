@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4061067820093459013}
   - component: {fileID: 1049398432486568606}
-  - component: {fileID: 7309770011571708857}
+  - component: {fileID: -2464883071376688218}
   m_Layer: 0
   m_Name: InterestPoint
   m_TagString: Untagged
@@ -211,7 +211,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7309770011571708857
+--- !u!114 &-2464883071376688218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1869184808796612520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4f0d30bba2f48b8bde9360e8fba623, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f526300c360344e984234e8e89f9aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: d41d8247a2e7f475c9e2c6addfbe0100, type: 3}

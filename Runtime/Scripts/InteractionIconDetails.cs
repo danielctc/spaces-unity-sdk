@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class InteractionIconDetails : MonoBehaviour
 {
-    public string prettyName => "Interaction";
-    public string tooltip => "Displays a visual icon indicating how users can interact with this object";
-
     public enum IconType
     {
         None,

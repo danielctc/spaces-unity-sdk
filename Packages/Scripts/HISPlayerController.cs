@@ -72,6 +72,16 @@ namespace HISPlayer
             SetUpPlayer();
             totalScreens = multiStreamProperties.Count;
 
+            // Initialize isMuted list if it hasn't been initialized
+            if (isMuted == null)
+            {
+                isMuted = new List<bool>();
+                for (int i = 0; i < totalScreens; i++)
+                {
+                    isMuted.Add(false); // Default to unmuted
+                }
+            }
+
             for (int i = 0; i < totalScreens; i++)
             {
                 StreamProperties stream = multiStreamProperties[i];

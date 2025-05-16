@@ -8,11 +8,11 @@
         "GUID:fa216a02d195f46dfac1c6346fe5a4ee",
         "GUID:c668b7a00ffe56a498ddb1fc9f96f4e6",
         "GUID:576b1892dea5e419cae3270bcd4243d5",
-        "GUID:57573bb0d46dd4056b01f4e847da5478"
+        "GUID:57573bb0d46dd4056b01f4e847da5478",
+        "GUID:6065fbe8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [
-        "Editor",
-        "WebGL"
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": true,

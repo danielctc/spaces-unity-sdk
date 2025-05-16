@@ -6,9 +6,6 @@ namespace Spaces.Core.Runtime
 {
     public class InterestPointDetails : MonoBehaviour
     {
-        public string prettyName => "Interest Point";
-        public string tooltip => "Creates an interactive information panel that displays text and images in 3D space";
-
         [Header("Content")]
         public string titleText = "Title";
         [TextArea(3, 10)]

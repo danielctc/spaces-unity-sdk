@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5111047876870530402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4f0d30bba2f48b8bde9360e8fba623, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f526300c360344e984234e8e89f9aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 15526ae9cc9974e24a072ef4c8fb409d, type: 3}
@@ -3535,22 +3535,9 @@ MonoBehaviour:
     adsProperties: []
     manifestTimeout: 10000
     segmentsTimeout: 5000
-  - renderMode: 2
-    material: {fileID: 0}
-    rawImage: {fileID: 0}
-    renderTexture: {fileID: 0}
-    url:
-    - https://content.hisplayer.com/getmedia/master.m3u8?contentKey=GdCDsEmW&protocol=hls
-    urlMimeTypes: 
-    autoPlay: 1
-    loopPlayback: 1
-    autoTransition: 0
-    adsProperties: []
-    manifestTimeout: 10000
-    segmentsTimeout: 5000
   startingBitrate: 0
   HISPlayerUIHelper: {fileID: 3002422655397798821}
-  isMuted: 0001
+  isMuted: 00
   totalScreens: 0
   isPlaying: 
 --- !u!114 &4081423763104727205
