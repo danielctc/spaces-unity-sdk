@@ -3,9 +3,9 @@
 ## Prerequisites
 
 This SDK requires the following dependencies:
-- Photon Fusion (com.photon.fusion) version 2.0.0 or compatible
+- Photon Fusion (com.photon.fusion)
 
-Make sure to install these dependencies through the Unity Package Manager before using the SDK.
+The dependencies will be automatically installed when you import the package. If you encounter any issues with the automatic installation, you can manually install the dependencies through the Unity Package Manager.
 
 ## HLS Streaming Support
 
