@@ -178,7 +178,7 @@ public class PlayerManager : NetworkBehaviour, IStateAuthorityChanged
             string playerId = localPlayer.Object.InputAuthority.ToString();
             if (!processedPlayerIds.Contains(playerId))
             {
-                string uid = PopulateUIOnAuth.CurrentUserUID;
+                string uid = ReactUnityFieldHandler.CurrentUserUID;
                 if (!string.IsNullOrEmpty(uid))
                 {
                     playerUids[playerId] = uid;

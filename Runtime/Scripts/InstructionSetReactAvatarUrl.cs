@@ -6,12 +6,12 @@ using UnityEngine.UI;
 using Fusion;
 using Spaces.Fusion.Runtime;
 
-namespace NinjutsuGames.FusionNetwork.Runtime.VisualScripting
+namespace Spaces.React.Runtime
 {
     [Title("Set Ready Player Me Avatar URL from React")]
     [Description("Sets the RPM avatar URL for the player based on a URL received from React.")]
 
-    [Category("React/Player/Set RPM React Avatar URL")]
+    [Category("Spaces/Player/Set RPM React Avatar URL")]
     public class InstructionSetReactAvatarUrl : Instruction
     {
         [SerializeField] private InputField inputField; // Input field to be set in the Unity Inspector

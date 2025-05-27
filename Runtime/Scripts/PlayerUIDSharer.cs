@@ -44,13 +44,13 @@ public class PlayerUIDSharer : NetworkBehaviour
     {
         // Wait for UID to be available
         int attempts = 0;
-        while (string.IsNullOrEmpty(PopulateUIOnAuth.CurrentUserUID) && attempts < 20)
+        while (string.IsNullOrEmpty(ReactUnityFieldHandler.CurrentUserUID) && attempts < 20)
         {
             yield return new WaitForSeconds(0.5f);
             attempts++;
         }
         
-        string uid = PopulateUIOnAuth.CurrentUserUID;
+        string uid = ReactUnityFieldHandler.CurrentUserUID;
         if (!string.IsNullOrEmpty(uid))
         {
             Debug.Log($"[PlayerUIDSharer] Setting local player UID: {uid}");
@@ -107,7 +107,7 @@ public class PlayerUIDSharer : NetworkBehaviour
 
         if (Object.HasInputAuthority)
         {
-            string uid = PopulateUIOnAuth.CurrentUserUID;
+            string uid = ReactUnityFieldHandler.CurrentUserUID;
             if (!string.IsNullOrEmpty(uid))
             {
                 Debug.Log($"[PlayerUIDSharer] Setting local player UID: {uid}");
@@ -138,7 +138,7 @@ public class PlayerUIDSharer : NetworkBehaviour
             // If we're the local player and our UID is not set, try to set it
             if (Object.HasInputAuthority)
             {
-                string uid = PopulateUIOnAuth.CurrentUserUID;
+                string uid = ReactUnityFieldHandler.CurrentUserUID;
                 if (!string.IsNullOrEmpty(uid) && uid != NetworkedUID.Value)
                 {
                     RPC_SendUID(uid);
