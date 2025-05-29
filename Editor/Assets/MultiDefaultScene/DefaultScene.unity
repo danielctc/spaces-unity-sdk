@@ -1432,7 +1432,7 @@ GameObject:
   - component: {fileID: 502788636}
   - component: {fileID: 502788635}
   m_Layer: 0
-  m_Name: SeatingTest
+  m_Name: SeatingHotspots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2262,6 +2262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1260964331}
   - component: {fileID: 1260964330}
+  - component: {fileID: 1260964332}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -2281,11 +2282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bdbca757a5041a4819f677dd7fdd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glbUrl: https://andrewm923.sg-host.com/testchair.glb
+  glbUrl: 
   parentTransform: {fileID: 1260964331}
   hotspotDetector: {fileID: 502788635}
-  useLocalFile: 1
-  localFilePath: Assets/TestModels/testchair.glb
+  testingMode: 0
 --- !u!4 &1260964331
 Transform:
   m_ObjectHideFlags: 0
@@ -2301,6 +2301,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260964332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260964329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f77b5a27e44c78bdc62702f691f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278497079
 GameObject:
   m_ObjectHideFlags: 0

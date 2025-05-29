@@ -223,4 +223,34 @@ public static class ReactRaiseEvent
         Debug.Log("[SetPortalImage] Would send to React: " + jsonData);
         #endif
     }
+
+    [DllImport("__Internal")]
+    private static extern void JsRegisterSeatingHotspot(string hotspotDataJson);
+
+    public static void RegisterSeatingHotspot(SeatingHotspotRegistrationData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending RegisterSeatingHotspot event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsRegisterSeatingHotspot(jsonData);
+        #else
+        Debug.Log("[RegisterSeatingHotspot] Would send to React: " + jsonData);
+        #endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void JsSeatingHotspotClicked(string hotspotClickDataJson);
+
+    public static void SeatingHotspotClicked(SeatingHotspotClickData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending SeatingHotspotClicked event with data: {jsonData}");
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsSeatingHotspotClicked(jsonData);
+        #else
+        Debug.Log("[SeatingHotspotClicked] Would send to React: " + jsonData);
+        #endif
+    }
 }

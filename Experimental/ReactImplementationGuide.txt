@@ -1,0 +1,137 @@
+Seating Hotspot System - React.js Implementation Guide
+
+1. Event Types:
+   - SeatingHotspot: Initial hotspot data with GLB URL
+   - SetSeatingHotspotModel: Update hotspot model
+   - UpdateSeatingHotspotTransform: Update hotspot position/rotation/scale
+   - RegisterSeatingHotspot: Unity registering a new hotspot
+   - SeatingHotspotClicked: Unity sending click events
+
+2. Data Structures:
+   ```typescript
+   interface SeatingHotspotData {
+     hotspotId: string;
+     glbUrl: string;
+   }
+
+   interface SeatingHotspotTransformData {
+     hotspotId: string;
+     position: { x: number; y: number; z: number };
+     rotation: { x: number; y: number; z: number };
+     scale: { x: number; y: number; z: number };
+   }
+
+   interface SeatingHotspotRegistrationData {
+     hotspotId: string;
+     position: string; // JSON string of Vector3Data
+     rotation: string; // JSON string of Vector3Data
+     scale: string;    // JSON string of Vector3Data
+     currentGlbUrl: string | null;
+     hasModel: boolean;
+   }
+
+   interface SeatingHotspotClickData {
+     hotspotId: string;
+     position: { x: number; y: number; z: number };
+     rotation: { x: number; y: number; z: number };
+     scale: { x: number; y: number; z: number };
+   }
+   ```
+
+3. Event Handlers:
+   ```typescript
+   // Register event listeners
+   window.addEventListener('RegisterSeatingHotspot', (event: CustomEvent) => {
+     const data: SeatingHotspotRegistrationData = event.detail;
+     // Handle new hotspot registration
+     // Store in your state management system
+   });
+
+   window.addEventListener('SeatingHotspotClicked', (event: CustomEvent) => {
+     const data: SeatingHotspotClickData = event.detail;
+     // Handle hotspot click
+     // Update UI or trigger actions
+   });
+   ```
+
+4. Sending Events to Unity:
+   ```typescript
+   // Send new hotspot data
+   function sendSeatingHotspot(data: SeatingHotspotData) {
+     window.dispatchReactUnityEvent('SeatingHotspot', JSON.stringify(data));
+   }
+
+   // Update hotspot transform
+   function updateSeatingHotspotTransform(data: SeatingHotspotTransformData) {
+     window.dispatchReactUnityEvent('UpdateSeatingHotspotTransform', JSON.stringify(data));
+   }
+
+   // Set hotspot model
+   function setSeatingHotspotModel(data: SeatingHotspotData) {
+     window.dispatchReactUnityEvent('SetSeatingHotspotModel', JSON.stringify(data));
+   }
+   ```
+
+5. Firebase Integration:
+   ```typescript
+   // Store hotspot data in Firebase
+   interface FirebaseHotspotData {
+     hotspotId: string;
+     glbUrl: string;
+     position: { x: number; y: number; z: number };
+     rotation: { x: number; y: number; z: number };
+     scale: { x: number; y: number; z: number };
+     createdAt: number;
+     updatedAt: number;
+   }
+
+   // Add to Firebase
+   async function addHotspot(data: FirebaseHotspotData) {
+     await firebase.firestore().collection('hotspots').doc(data.hotspotId).set(data);
+   }
+
+   // Update in Firebase
+   async function updateHotspot(hotspotId: string, data: Partial<FirebaseHotspotData>) {
+     await firebase.firestore().collection('hotspots').doc(hotspotId).update({
+       ...data,
+       updatedAt: Date.now()
+     });
+   }
+
+   // Listen for changes
+   function subscribeToHotspots(callback: (hotspots: FirebaseHotspotData[]) => void) {
+     return firebase.firestore()
+       .collection('hotspots')
+       .onSnapshot((snapshot) => {
+         const hotspots = snapshot.docs.map(doc => doc.data() as FirebaseHotspotData);
+         callback(hotspots);
+       });
+   }
+   ```
+
+6. Implementation Steps:
+   1. Set up Firebase project and enable Firestore
+   2. Create React components for hotspot management
+   3. Implement event handlers for Unity communication
+   4. Set up Firebase listeners for real-time updates
+   5. Create UI for managing hotspots (add, edit, delete)
+   6. Implement GLB file upload to Firebase Storage
+   7. Add thumbnail generation for GLB previews
+   8. Implement transform controls for positioning
+
+7. Best Practices:
+   - Use TypeScript for type safety
+   - Implement error handling for all Firebase operations
+   - Add loading states for async operations
+   - Implement proper cleanup for Firebase listeners
+   - Add validation for hotspot data
+   - Implement proper error boundaries
+   - Add proper logging for debugging
+   - Implement proper security rules in Firebase
+
+8. Security Considerations:
+   - Set up proper Firebase security rules
+   - Validate all data before sending to Unity
+   - Add rate limiting for API calls
+   - Implement proper error handling
+   - Add proper logging for security events

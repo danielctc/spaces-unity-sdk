@@ -227,5 +227,19 @@ mergeInto(LibraryManager.library, {
     
     // Send directly to Unity using the event system
     window.dispatchReactUnityEvent("SetPortalImage", jsonData);
+  },
+
+  // New function for registering seating hotspots
+  JsRegisterSeatingHotspot: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching RegisterSeatingHotspot event with data:", jsonData);
+    window.dispatchReactUnityEvent("RegisterSeatingHotspot", jsonData);
+  },
+
+  // New function for seating hotspot clicks
+  JsSeatingHotspotClicked: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching SeatingHotspotClicked event with data:", jsonData);
+    window.dispatchReactUnityEvent("SeatingHotspotClicked", jsonData);
   }
 });
