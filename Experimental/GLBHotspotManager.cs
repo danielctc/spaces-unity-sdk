@@ -67,4 +67,14 @@ public class GLBHotspotManager : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        var downloader = gameObject.AddComponent<GLBDownloader>();
+        downloader.Url = glbUrl;                 // kicks off the load
+        downloader.OnModelLoaded += () => {
+            HotspotDetector detector = FindObjectOfType<HotspotDetector>();
+            detector?.DetectHotspots();          // run after the GLB exists
+        };
+    }
 } 

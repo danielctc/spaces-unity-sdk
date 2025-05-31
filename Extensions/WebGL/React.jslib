@@ -241,5 +241,12 @@ mergeInto(LibraryManager.library, {
     var jsonData = UTF8ToString(objectPointer);
     console.log("Unity: Dispatching SeatingHotspotClicked event with data:", jsonData);
     window.dispatchReactUnityEvent("SeatingHotspotClicked", jsonData);
+  },
+
+  // New function for updating seating hotspot transforms from Unity
+  JsUpdateSeatingHotspotTransform: function(objectPointer) {
+    var jsonData = UTF8ToString(objectPointer);
+    console.log("Unity: Dispatching UpdateSeatingHotspotTransform event with data:", jsonData);
+    window.dispatchReactUnityEvent("UpdateSeatingHotspotTransform", jsonData);
   }
 });

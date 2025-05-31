@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 535097193828995497}
   - component: {fileID: 4831699391279945621}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SitDown_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instructions:
     m_Instructions:
-    - rid: 1962887181353615463
+    - rid: 1962887328480100379
   m_TriggerEvent:
     rid: 1962887181353615459
   references:
@@ -73,19 +73,26 @@ MonoBehaviour:
       type: {class: InputButtonKeyboardPress, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Key: 20
-    - rid: 1962887181353615463
-      type: {class: InstructionLogicRunConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
+    - rid: 1962887328480100379
+      type: {class: InstructionRpcConditions, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
       data:
         m_Breakpoint: 0
         m_IsEnabled: 1
+        m_RpcTarget: -1
+        m_CacheState:
+          m_Property:
+            rid: 1962887328480100388
         m_Conditions:
           m_Property:
-            rid: 1962887181353615464
+            rid: 1962887328480100381
         m_WaitToFinish: 1
-    - rid: 1962887181353615464
+    - rid: 1962887328480100381
       type: {class: GetGameObjectConditions, ns: GameCreator.Runtime.VisualScripting, asm: GameCreator.Runtime.Core}
       data:
         m_Conditions: {fileID: 6984744660707121296}
+    - rid: 1962887328480100388
+      type: {class: GetBoolTrue, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
+      data: 
 --- !u!1 &6281762917176437999
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +104,7 @@ GameObject:
   - component: {fileID: 6083380461010421559}
   - component: {fileID: 7634910150413831441}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SeatingHotspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target:
     m_Property:
-      rid: 1962887181353615451
+      rid: 1962887328480100386
   m_Mode: 0
   m_Radius:
     m_Property:
@@ -145,9 +152,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1962887181353615451
-      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 1962887181353615452
       type: {class: GetDecimalDecimal, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
@@ -164,6 +168,15 @@ MonoBehaviour:
       type: {class: GetGameObjectInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_GameObject: {fileID: 4557150590855529790}
+    - rid: 1962887328480100386
+      type: {class: GetGameObjectRPCSender, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data:
+        fallbackTo:
+          m_Property:
+            rid: 1962887328480100387
+    - rid: 1962887328480100387
+      type: {class: GetGameObjectLocalPlayer, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data: 
 --- !u!1 &6473028223684391765
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,8 +187,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2003349008541791580}
   - component: {fileID: 6984744660707121296}
+  - component: {fileID: 5288513222990907170}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Conditions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +247,7 @@ MonoBehaviour:
         m_IsEnabled: 1
         m_Character:
           m_Property:
-            rid: 1962887181353615467
+            rid: 1962887328480100384
         m_State:
           m_StateType: 2
           m_AnimationClip:
@@ -250,9 +264,6 @@ MonoBehaviour:
         m_Speed: 1
         m_Weight: 1
         m_Transition: 0.1
-    - rid: 1962887181353615467
-      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 1962887181353615468
       type: {class: GetAnimationInstance, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
@@ -268,7 +279,7 @@ MonoBehaviour:
         m_IsEnabled: 1
         m_Character:
           m_Property:
-            rid: 1962887181353615472
+            rid: 1962887328480100382
         m_Location:
           m_Property:
             rid: 1962887181353615473
@@ -280,9 +291,6 @@ MonoBehaviour:
           m_CancelOnFail: 0
           m_OnFail:
             m_Instructions: []
-    - rid: 1962887181353615472
-      type: {class: GetGameObjectPlayer, ns: GameCreator.Runtime.Characters, asm: GameCreator.Runtime.Core}
-      data: 
     - rid: 1962887181353615473
       type: {class: GetLocationNavigationMarker, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
@@ -296,6 +304,42 @@ MonoBehaviour:
       type: {class: GetGameObjectNavigationMarker, ns: GameCreator.Runtime.Common, asm: GameCreator.Runtime.Core}
       data:
         m_Marker: {fileID: 5872144977775626808}
+    - rid: 1962887328480100382
+      type: {class: GetGameObjectRPCSender, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data:
+        fallbackTo:
+          m_Property:
+            rid: 1962887328480100383
+    - rid: 1962887328480100383
+      type: {class: GetGameObjectLocalPlayer, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data: 
+    - rid: 1962887328480100384
+      type: {class: GetGameObjectRPCSender, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data:
+        fallbackTo:
+          m_Property:
+            rid: 1962887328480100385
+    - rid: 1962887328480100385
+      type: {class: GetGameObjectLocalPlayer, ns: NinjutsuGames.FusionNetwork.Runtime, asm: NinjutsuGames.FusionNetwork.Runtime}
+      data: 
+--- !u!114 &5288513222990907170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473028223684391765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3933705582
+  ObjectInterest: 1
+  Flags: 131073
+  NestedObjects: []
+  NetworkedBehaviours: []
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &7965834741854664622
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 7965834741854664622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -363,7 +407,7 @@ GameObject:
   - component: {fileID: 215403105478942259}
   - component: {fileID: 1459980277709856531}
   m_Layer: 0
-  m_Name: ReactTest
+  m_Name: ReactSeatingHotspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +446,7 @@ BoxCollider:
   m_LayerOverridePriority: 10
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

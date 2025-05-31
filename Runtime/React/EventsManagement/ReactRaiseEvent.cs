@@ -253,4 +253,18 @@ public static class ReactRaiseEvent
         Debug.Log("[SeatingHotspotClicked] Would send to React: " + jsonData);
         #endif
     }
+
+    [DllImport("__Internal")]
+    private static extern void JsUpdateSeatingHotspotTransform(string jsonData);
+
+    public static void UpdateSeatingHotspotTransform(SeatingHotspotTransformData data)
+    {
+        string jsonData = JsonUtility.ToJson(data);
+        Debug.Log($"Unity: Sending UpdateSeatingHotspotTransform event with data: {jsonData}");
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        JsUpdateSeatingHotspotTransform(jsonData);
+        #else
+        Debug.Log("[UpdateSeatingHotspotTransform] Would send to React: " + jsonData);
+        #endif
+    }
 }

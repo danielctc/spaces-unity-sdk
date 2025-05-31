@@ -59,9 +59,7 @@ public class SeatingHotspotManager : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         Debug.Log($"[SeatingHotspotManager] OnEnable called for hotspot {hotspotId}");
-        ReactIncomingEvent.OnReactSeatingHotspot += HandleSeatingHotspot;
-        ReactIncomingEvent.OnSetSeatingHotspotModel += HandleSetSeatingHotspotModel;
-        ReactIncomingEvent.OnUpdateSeatingHotspotTransform += HandleUpdateSeatingHotspotTransform;
+        // Instance-level event subscriptions removed. Global static handlers manage routing now.
         
         if (!string.IsNullOrEmpty(hotspotId))
         {
@@ -71,9 +69,7 @@ public class SeatingHotspotManager : MonoBehaviour, IPointerClickHandler
 
     private void OnDisable()
     {
-        ReactIncomingEvent.OnReactSeatingHotspot -= HandleSeatingHotspot;
-        ReactIncomingEvent.OnSetSeatingHotspotModel -= HandleSetSeatingHotspotModel;
-        ReactIncomingEvent.OnUpdateSeatingHotspotTransform -= HandleUpdateSeatingHotspotTransform;
+        // Instance-level event unsubscriptions removed. Global static handlers manage routing now.
         
         if (!string.IsNullOrEmpty(hotspotId) && hotspotInstances.ContainsKey(hotspotId))
         {
@@ -114,13 +110,21 @@ public class SeatingHotspotManager : MonoBehaviour, IPointerClickHandler
                 var modelRoot = glbDownloader.GetModelRoot();
                 if (modelRoot != null)
                 {
-                    // Add collider to the model if it doesn't have one
-                    if (modelRoot.GetComponent<Collider>() == null)
+                    // Add/Fit collider etc then ensure click handler
+                    BoxCollider collider = modelRoot.GetComponent<BoxCollider>();
+                    if (collider == null)
                     {
-                        var collider = modelRoot.AddComponent<BoxCollider>();
-                        collider.isTrigger = true;
-                        Debug.Log("[SeatingHotspotManager] Added BoxCollider to GLB model for click detection");
+                        collider = modelRoot.AddComponent<BoxCollider>();
                     }
+                    collider.isTrigger = true; // Keep trigger so it doesn't block the player
+                    FitColliderToModel(collider, modelRoot);
+
+                    var clickHandler = modelRoot.GetComponent<SeatingHotspotClickHandler>();
+                    if (clickHandler == null)
+                    {
+                        clickHandler = modelRoot.AddComponent<SeatingHotspotClickHandler>();
+                    }
+                    clickHandler.Initialize(this);
 
                     // Make all renderers invisible but keep them for click detection
                     var renderers = modelRoot.GetComponentsInChildren<Renderer>();
@@ -284,4 +288,81 @@ public class SeatingHotspotManager : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
+    // Helper to resize box collider so it wraps all child renderers
+    private void FitColliderToModel(BoxCollider collider, GameObject root)
+    {
+        var renderers = root.GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) return;
+        Bounds bounds = renderers[0].bounds;
+        foreach (var r in renderers)
+        {
+            bounds.Encapsulate(r.bounds);
+        }
+        collider.center = root.transform.InverseTransformPoint(bounds.center);
+        collider.size = root.transform.InverseTransformVector(bounds.size);
+    }
+
+    #region Static multi-hotspot support
+
+    // This static initializer sets up global event listeners once after the first scene load.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void InitializeStaticListeners()
+    {
+        Debug.Log("[SeatingHotspotManager] Static initialization – registering React event listeners");
+        ReactIncomingEvent.OnReactSeatingHotspot += StaticHandleSeatingHotspot;
+        ReactIncomingEvent.OnSetSeatingHotspotModel += StaticHandleSetSeatingHotspotModel;
+        ReactIncomingEvent.OnUpdateSeatingHotspotTransform += StaticHandleUpdateTransform;
+    }
+
+    private static void StaticHandleSeatingHotspot(SeatingHotspotData data)
+    {
+        if (!hotspotInstances.TryGetValue(data.hotspotId, out var manager) || manager == null)
+        {
+            manager = CreateHotspot(data.hotspotId);
+        }
+
+        manager.HandleSeatingHotspot(data);
+    }
+
+    private static void StaticHandleSetSeatingHotspotModel(SeatingHotspotData data)
+    {
+        if (!hotspotInstances.TryGetValue(data.hotspotId, out var manager) || manager == null)
+        {
+            manager = CreateHotspot(data.hotspotId);
+        }
+
+        manager.HandleSetSeatingHotspotModel(data);
+    }
+
+    private static void StaticHandleUpdateTransform(SeatingHotspotTransformData data)
+    {
+        if (!hotspotInstances.TryGetValue(data.hotspotId, out var manager) || manager == null)
+        {
+            manager = CreateHotspot(data.hotspotId);
+        }
+
+        manager.HandleUpdateSeatingHotspotTransform(data);
+    }
+
+    private static SeatingHotspotManager CreateHotspot(string hotspotId)
+    {
+        Debug.Log($"[SeatingHotspotManager] Creating new hotspot GameObject for ID: {hotspotId}");
+
+        // Create a new GameObject to hold the hotspot components.
+        var go = new GameObject($"SeatingHotspot_{hotspotId}");
+
+        // Add the GLBDownloader FIRST so that the manager finds it in Awake.
+        go.AddComponent<GLBDownloader>();
+
+        // Now add the hotspot manager.
+        var manager = go.AddComponent<SeatingHotspotManager>();
+
+        // Store reference so future events can find it immediately.
+        hotspotInstances[hotspotId] = manager;
+
+        return manager;
+    }
+
+    #endregion
 } 

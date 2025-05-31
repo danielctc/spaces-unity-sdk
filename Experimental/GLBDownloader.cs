@@ -5,6 +5,9 @@ using UnityEditor;
 using System.Collections;
 using GLTFast; // Add this for GLB loading
 using System.Threading.Tasks;
+#if FUSION_WEAVER
+using Fusion;
+#endif
 
 public class GLBDownloader : MonoBehaviour, IGLBHandler
 {
@@ -15,6 +18,11 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
     private GameObject currentModel;
     public bool HasModel => currentModel != null;
     
+    #if FUSION_WEAVER
+    [Header("Networking")]
+    [Tooltip("Prefab that only contains a NetworkObject component and is registered in Network Project Config.")]
+    [SerializeField] private NetworkObject networkAnchorPrefab;
+    #endif
     // Store position data from React
     private Vector3? targetPosition;
     private Quaternion? targetRotation;
@@ -30,6 +38,12 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
         {
             Debug.Log($"[GLBDownloader] Setting URL to: {value}");
             glbUrl = value;
+#if FUSION_WEAVER
+            if (networkAnchorPrefab != null)
+            {
+                RuntimeNetworkAnchor.SetDefaultAnchorPrefab(networkAnchorPrefab);
+            }
+#endif
             if (!string.IsNullOrEmpty(glbUrl))
             {
                 StartCoroutine(LoadModel());
@@ -65,6 +79,26 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
     private void Start()
     {
         Debug.Log("[GLBDownloader] Initialized - waiting for URL from React");
+    }
+
+    private void Awake()
+    {
+        if (hotspotDetector == null)
+        {
+            hotspotDetector = FindObjectOfType<HotspotDetector>();
+
+            if (hotspotDetector == null)
+            {
+                // Create a new global detector so that hotspots can still be detected
+                var detectorGO = new GameObject("HotspotDetector");
+                hotspotDetector = detectorGO.AddComponent<HotspotDetector>();
+                Debug.Log("[GLBDownloader] Created new HotspotDetector instance at runtime");
+            }
+            else
+            {
+                Debug.Log("[GLBDownloader] Found existing HotspotDetector in scene");
+            }
+        }
     }
 
     public System.Collections.IEnumerator LoadModel()
@@ -159,6 +193,10 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
                     currentModel = container;
                     Debug.Log($"[GLBDownloader] Added GLB to hierarchy: {glbHolder.name}");
                     
+                    #if FUSION_WEAVER
+                    TryCreateNetworkAnchor(glbInstance);
+                    #endif
+                    
                     yield return null;
                     
                     OnGLBLoaded(glbInstance);
@@ -238,6 +276,10 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
             // Success! Clean up and notify
             currentModel = container;
             Debug.Log($"[GLBDownloader] Successfully loaded GLB in WebGL: {container.name}");
+            
+            #if FUSION_WEAVER
+            TryCreateNetworkAnchor(modelHolder);
+            #endif
             OnGLBLoaded(modelHolder);
 #endif
         }
@@ -290,4 +332,20 @@ public class GLBDownloader : MonoBehaviour, IGLBHandler
         
         return currentModel;
     }
+
+    #if FUSION_WEAVER
+    private void TryCreateNetworkAnchor(GameObject visualRoot)
+    {
+        if (networkAnchorPrefab == null) return;
+
+        var anchor = visualRoot.AddComponent<RuntimeNetworkAnchor>();
+        // Assign the prefab from the downloader if none was set directly on the component
+        var field = typeof(RuntimeNetworkAnchor).GetField("anchorPrefab", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        if (field != null && field.GetValue(anchor) == null)
+        {
+            field.SetValue(anchor, networkAnchorPrefab);
+        }
+        anchor.AttachAndSpawn();
+    }
+    #endif
 } 

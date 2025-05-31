@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 132234948}
   - component: {fileID: 132234951}
   - component: {fileID: 132234952}
+  - component: {fileID: 132234953}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -786,6 +787,22 @@ MonoBehaviour:
     - rid: 1426401279288804262
       type: {class: CameraClipNone, ns: GameCreator.Runtime.Cameras, asm: GameCreator.Runtime.Core}
       data: 
+--- !u!114 &132234953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132234947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73b0a95be81246699cf0d9ecdc01863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreferredRunner: 0
+  Components:
+  - {fileID: 132234948}
+  _guid: e5d49a12-d592-4110-
 --- !u!1 &169012207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e51a97e71b8a47ba9327f2cf3d16f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testPrefab: {fileID: 9104982464856428696, guid: decc6459775b2452db38eef7f81ca8d5, type: 3}
+  testPrefab: {fileID: 5139428798700782652, guid: be69671ff920240f79e75aa50ac726fb, type: 3}
+  networkSpawn: 0
 --- !u!4 &502788636
 Transform:
   m_ObjectHideFlags: 0
@@ -1843,7 +1861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &612618901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2264,7 +2282,7 @@ GameObject:
   - component: {fileID: 1260964330}
   - component: {fileID: 1260964332}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GLBDownloader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2283,9 +2301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glbUrl: 
-  parentTransform: {fileID: 1260964331}
   hotspotDetector: {fileID: 502788635}
   testingMode: 0
+  networkAnchorPrefab: {fileID: 4417125619519537830, guid: 29e0a7b191aef476bb83f9088f297fd2, type: 3}
 --- !u!4 &1260964331
 Transform:
   m_ObjectHideFlags: 0
@@ -3641,6 +3659,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736853540}
   m_CullTransparentMesh: 1
+--- !u!1 &1780180862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780180864}
+  - component: {fileID: 1780180863}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1780180863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780180862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e250325a2bf134447a3693769fa6defd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glbUrl: https://andrewm923.sg-host.com/testchair.glb
+  testPrefab: {fileID: 5139428798700782652, guid: be69671ff920240f79e75aa50ac726fb, type: 3}
+--- !u!4 &1780180864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780180862}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1808609924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3825,6 +3889,7 @@ GameObject:
   - component: {fileID: 1889355724}
   - component: {fileID: 1889355723}
   - component: {fileID: 1889355725}
+  - component: {fileID: 1889355726}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -3935,6 +4000,22 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 3
+--- !u!114 &1889355726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889355722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73b0a95be81246699cf0d9ecdc01863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreferredRunner: 0
+  Components:
+  - {fileID: 1889355723}
+  _guid: 0437d096-5d6f-441e-
 --- !u!1 &1902104082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,3 +4593,4 @@ SceneRoots:
   - {fileID: 648184653}
   - {fileID: 502788636}
   - {fileID: 1260964331}
+  - {fileID: 1780180864}

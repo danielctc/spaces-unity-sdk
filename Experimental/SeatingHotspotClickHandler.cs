@@ -12,11 +12,7 @@ public class SeatingHotspotClickHandler : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("[SeatingHotspotClickHandler] GLB model clicked");
-        if (hotspotManager != null)
-        {
-            // Forward the click to the hotspot manager
-            hotspotManager.OnPointerClick(eventData);
-        }
+        if (hotspotManager == null) return;
+        hotspotManager.OnPointerClick(eventData);
     }
 } 
