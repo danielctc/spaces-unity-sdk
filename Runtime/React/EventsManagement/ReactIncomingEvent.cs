@@ -1,4 +1,5 @@
 using Spaces.React.Runtime;
+using Spaces.React.Runtime.Bridge;
 using UnityEngine;
 
 namespace Spaces.React.Runtime
@@ -92,6 +93,41 @@ namespace Spaces.React.Runtime
         // Add delegate and event for UpdateSeatingHotspotTransform
         public delegate void UpdateSeatingHotspotTransformHandler(SeatingHotspotTransformData data);
         public static event UpdateSeatingHotspotTransformHandler OnUpdateSeatingHotspotTransform;
+
+        // Video Canvas delegates and events
+        public delegate void PlaceVideoCanvasHandler(VideoCanvasData data);
+        public static event PlaceVideoCanvasHandler OnPlaceVideoCanvas;
+
+        public delegate void UpdateVideoCanvasHandler(VideoCanvasUpdateData data);
+        public static event UpdateVideoCanvasHandler OnUpdateVideoCanvas;
+
+        public delegate void DeleteVideoCanvasHandler(VideoCanvasDeleteData data);
+        public static event DeleteVideoCanvasHandler OnDeleteVideoCanvas;
+
+        // Bridge delegates and events (Gen 2 - thin client architecture)
+        public delegate void BridgeConnectHandler(Bridge.BridgeConnectData data);
+        public static event BridgeConnectHandler OnBridgeConnect;
+
+        public delegate void BridgeDisconnectHandler(Bridge.BridgeDisconnectData data);
+        public static event BridgeDisconnectHandler OnBridgeDisconnect;
+
+        public delegate void ActorJoinedHandler(Bridge.ActorJoinedData data);
+        public static event ActorJoinedHandler OnActorJoined;
+
+        public delegate void ActorLeftHandler(Bridge.ActorLeftData data);
+        public static event ActorLeftHandler OnActorLeft;
+
+        public delegate void ActorUpdateHandler(Bridge.ActorUpdateData data);
+        public static event ActorUpdateHandler OnActorUpdate;
+
+        public delegate void ObjectSpawnedHandler(Bridge.ObjectSpawnedData data);
+        public static event ObjectSpawnedHandler OnObjectSpawned;
+
+        public delegate void ObjectDespawnedHandler(Bridge.ObjectDespawnedData data);
+        public static event ObjectDespawnedHandler OnObjectDespawned;
+
+        public delegate void ObjectUpdateHandler(Bridge.ObjectUpdateData data);
+        public static event ObjectUpdateHandler OnObjectUpdate;
 
         private void Awake()
         {
@@ -340,6 +376,96 @@ namespace Spaces.React.Runtime
                     Debug.Log("[ReactIncomingEvent] UpdateCatalogueItem event received");
                     SeatingHotspotTransformData updateData = JsonUtility.FromJson<SeatingHotspotTransformData>(data);
                     OnUpdateSeatingHotspotTransform?.Invoke(updateData);
+                    break;
+
+                // Handle the PlaceVideoCanvas event
+                case "PlaceVideoCanvas":
+                    Debug.Log("[ReactIncomingEvent] PlaceVideoCanvas event received");
+                    try
+                    {
+                        VideoCanvasData videoCanvasData = JsonUtility.FromJson<VideoCanvasData>(data);
+                        Debug.Log($"[ReactIncomingEvent] Parsed PlaceVideoCanvas data - ID: {videoCanvasData.canvasId}, URL: {videoCanvasData.videoUrl}");
+                        OnPlaceVideoCanvas?.Invoke(videoCanvasData);
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.LogError($"[ReactIncomingEvent] Failed to parse PlaceVideoCanvas data: {e.Message}\nData: {data}");
+                    }
+                    break;
+
+                // Handle the UpdateVideoCanvas event
+                case "UpdateVideoCanvas":
+                    Debug.Log("[ReactIncomingEvent] UpdateVideoCanvas event received");
+                    try
+                    {
+                        VideoCanvasUpdateData updateVideoCanvasData = JsonUtility.FromJson<VideoCanvasUpdateData>(data);
+                        OnUpdateVideoCanvas?.Invoke(updateVideoCanvasData);
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.LogError($"[ReactIncomingEvent] Failed to parse UpdateVideoCanvas data: {e.Message}\nData: {data}");
+                    }
+                    break;
+
+                // Handle the DeleteVideoCanvas event
+                case "DeleteVideoCanvas":
+                    Debug.Log("[ReactIncomingEvent] DeleteVideoCanvas event received");
+                    try
+                    {
+                        VideoCanvasDeleteData deleteVideoCanvasData = JsonUtility.FromJson<VideoCanvasDeleteData>(data);
+                        OnDeleteVideoCanvas?.Invoke(deleteVideoCanvasData);
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.LogError($"[ReactIncomingEvent] Failed to parse DeleteVideoCanvas data: {e.Message}\nData: {data}");
+                    }
+                    break;
+
+                // Bridge events (Gen 2 - thin client architecture)
+                case "BridgeConnect":
+                    Debug.Log("[ReactIncomingEvent] BridgeConnect event received");
+                    var connectData = JsonUtility.FromJson<BridgeConnectData>(data);
+                    OnBridgeConnect?.Invoke(connectData);
+                    break;
+
+                case "BridgeDisconnect":
+                    Debug.Log("[ReactIncomingEvent] BridgeDisconnect event received");
+                    var disconnectData = JsonUtility.FromJson<BridgeDisconnectData>(data);
+                    OnBridgeDisconnect?.Invoke(disconnectData);
+                    break;
+
+                case "ActorJoined":
+                    Debug.Log("[ReactIncomingEvent] ActorJoined event received");
+                    var actorJoinedData = JsonUtility.FromJson<ActorJoinedData>(data);
+                    OnActorJoined?.Invoke(actorJoinedData);
+                    break;
+
+                case "ActorLeft":
+                    Debug.Log("[ReactIncomingEvent] ActorLeft event received");
+                    var actorLeftData = JsonUtility.FromJson<ActorLeftData>(data);
+                    OnActorLeft?.Invoke(actorLeftData);
+                    break;
+
+                case "ActorUpdate":
+                    var actorUpdateData = JsonUtility.FromJson<ActorUpdateData>(data);
+                    OnActorUpdate?.Invoke(actorUpdateData);
+                    break;
+
+                case "ObjectSpawned":
+                    Debug.Log("[ReactIncomingEvent] ObjectSpawned event received");
+                    var objectSpawnedData = JsonUtility.FromJson<ObjectSpawnedData>(data);
+                    OnObjectSpawned?.Invoke(objectSpawnedData);
+                    break;
+
+                case "ObjectDespawned":
+                    Debug.Log("[ReactIncomingEvent] ObjectDespawned event received");
+                    var objectDespawnedData = JsonUtility.FromJson<ObjectDespawnedData>(data);
+                    OnObjectDespawned?.Invoke(objectDespawnedData);
+                    break;
+
+                case "ObjectUpdate":
+                    var objectUpdateData = JsonUtility.FromJson<ObjectUpdateData>(data);
+                    OnObjectUpdate?.Invoke(objectUpdateData);
                     break;
 
                 default:
